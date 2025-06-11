@@ -1,5 +1,17 @@
 ALTER view [dbo].[vPers_Gestio_Articles_Reserva_PrePedidoAvui_Empresa]
 as
+with Excepcions as (select TipusExcepcio, PercentInc, ImportInc, PercentIncVenda, ImportFix, Tarifa, Client, Article, Subgrup, Grup, Familia
+ from puignau..ArticlePreparaClients pugi 
+	union all
+	select TipusExcepcio, PercentInc, ImportInc, PercentIncVenda, ImportFix, Tarifa, Client, Article, Subgrup, Grup, Familia
+	from puignaubcn..ArticlePreparaClients puba
+	union all
+	select TipusExcepcio, PercentInc, ImportInc, PercentIncVenda, ImportFix, Tarifa, Client, Article, Subgrup, Grup, Familia
+ from puignau..Articlellotjaexcepcions pugi 
+	union all
+	select TipusExcepcio, PercentInc, ImportInc, PercentIncVenda, ImportFix, Tarifa, Client, Article, Subgrup, Grup, Familia
+	from puignaubcn..Articlellotjaexcepcions puba)
+
 select  p.IdPrePedido,k.Origen,
  k.Id, k.Data, k.Article, k.Nom, k.NomFrances, k.NomCastella, k.TipusUnitat, k.Unitats, k.PreuCost, k.PreuCostBotiga, ept.PermetT1,
  k.PreuVenda1* ept.PermetT1 as PreuVenda1,
@@ -7,25 +19,82 @@ select  p.IdPrePedido,k.Origen,
  k.PreuVenda3* ept.PermetT3 as PreuVenda3,
  k.PreuVenda4* ept.PermetT4 as PreuVenda4,
  k.PreuVenda5* ept.PermetT5 as PreuVenda5,
- coalesce (case when k.origen = 'ArticleArriva' then k.PreuVenda1 
- when k.origen = 'ArticleOferta' then k.PreuVenda1 
- when k.origen = 'ArticleNevera' or k.origen = 'ArticleLlotja' then
- case TipusExcepcio 
- when 1 then k.PreuCost * PercentInc -- % Sobre cost
- when 2 then k.PreuCost + ImportInc -- € Sobre Cost
- when 3 then -- % Sobre Tarifa
-	case Tarifa 
-	when 1 then PreuVenda1 * PercentIncVenda
-	when 2 then PreuVenda2 * PercentIncVenda
-	when 3 then PreuVenda3 * PercentIncVenda
-	when 4 then PreuVenda4 * PercentIncVenda
-	when 5 then PreuVenda5 * PercentIncVenda
-	else PreuVenda1
-	end
- when 4 then ImportFix -- Preu Fix
- else PreuVenda1
- end
- else precio.precio end, precio.precio) as PreuMinimAplicable,
+  coalesce (
+ case 
+	when k.origen = 'ArticleArriva' then k.PreuVenda1 
+	when k.origen = 'ArticleOferta' then k.PreuVenda1 
+	when k.origen = 'ArticleNevera' or k.origen = 'ArticleLlotja' then
+		case 
+			when excepcionsArt.Article is not null then
+				case excepcionsArt.TipusExcepcio 
+					when 1 then k.PreuCost * excepcionsArt.PercentInc -- % Sobre cost
+					when 2 then k.PreuCost + excepcionsArt.ImportInc -- € Sobre Cost
+					when 3 then -- % Sobre Tarifa
+						case excepcionsArt.Tarifa 
+							when 1 then PreuVenda1 * excepcionsArt.PercentIncVenda
+							when 2 then PreuVenda2 * excepcionsArt.PercentIncVenda
+							when 3 then PreuVenda3 * excepcionsArt.PercentIncVenda
+							when 4 then PreuVenda4 * excepcionsArt.PercentIncVenda
+							when 5 then PreuVenda5 * excepcionsArt.PercentIncVenda
+						else PreuVenda1
+						end
+					when 4 then excepcionsArt.ImportFix -- Preu Fix
+				else PreuVenda1
+				end
+			when excepcionsSGrup.subgrup is not null then
+				case excepcionsSGrup.TipusExcepcio 
+					when 1 then k.PreuCost * excepcionsSGrup.PercentInc -- % Sobre cost
+					when 2 then k.PreuCost + excepcionsSGrup.ImportInc -- € Sobre Cost
+					when 3 then -- % Sobre Tarifa
+						case excepcionsSGrup.Tarifa 
+							when 1 then PreuVenda1 * excepcionsSGrup.PercentIncVenda
+							when 2 then PreuVenda2 * excepcionsSGrup.PercentIncVenda
+							when 3 then PreuVenda3 * excepcionsSGrup.PercentIncVenda
+							when 4 then PreuVenda4 * excepcionsSGrup.PercentIncVenda
+							when 5 then PreuVenda5 * excepcionsSGrup.PercentIncVenda
+						else PreuVenda1
+						end
+					when 4 then excepcionsSGrup.ImportFix -- Preu Fix
+				else PreuVenda1
+				end
+			when excepcionsGrup.Grup is not null then
+				case excepcionsGrup.TipusExcepcio 
+					when 1 then k.PreuCost * excepcionsGrup.PercentInc -- % Sobre cost
+					when 2 then k.PreuCost + excepcionsGrup.ImportInc -- € Sobre Cost
+					when 3 then -- % Sobre Tarifa
+						case excepcionsGrup.Tarifa 
+							when 1 then PreuVenda1 * excepcionsGrup.PercentIncVenda
+							when 2 then PreuVenda2 * excepcionsGrup.PercentIncVenda
+							when 3 then PreuVenda3 * excepcionsGrup.PercentIncVenda
+							when 4 then PreuVenda4 * excepcionsGrup.PercentIncVenda
+							when 5 then PreuVenda5 * excepcionsGrup.PercentIncVenda
+						else PreuVenda1
+						end
+					when 4 then excepcionsGrup.ImportFix -- Preu Fix
+				else PreuVenda1
+				end
+			when excepcionsFam.Familia is not null then
+				case excepcionsFam.TipusExcepcio 
+					when 1 then k.PreuCost * excepcionsFam.PercentInc -- % Sobre cost
+					when 2 then k.PreuCost + excepcionsFam.ImportInc -- € Sobre Cost
+					when 3 then -- % Sobre Tarifa
+						case excepcionsFam.Tarifa 
+							when 1 then PreuVenda1 * excepcionsFam.PercentIncVenda
+							when 2 then PreuVenda2 * excepcionsFam.PercentIncVenda
+							when 3 then PreuVenda3 * excepcionsFam.PercentIncVenda
+							when 4 then PreuVenda4 * excepcionsFam.PercentIncVenda
+							when 5 then PreuVenda5 * excepcionsFam.PercentIncVenda
+						else PreuVenda1
+						end
+					when 4 then excepcionsFam.ImportFix -- Preu Fix
+				else PreuVenda1
+				end
+			else PreuVenda1
+			end
+ else precio.precio end
+ 
+ 
+ , precio.precio) as PreuMinimAplicable,
  cc.P_TipusABC,
  k.PreuVenda1Minim, k.PreuVendaBotiga, k.Descte2, k.Descte3, k.Descte4, k.Descte5, k.IncT2, k.PreuVendaT2, k.Bloquejat, k.PendentArribar, k.KgsPerFardo, k.KgsPerPeca, k.PecesPerFardo, k.Kgs, k.UnitatMesura, k.PreuCostTotal, k.ConversioKgs, k.TipusLiquidacio, k.TipusMotiu,  convert(varchar(100),k.Motiu) as Motiu, k.CasellaCompra, k.Avis, k.AmbAlbara, k.Visible, k.UltimPreuVenda1, k.VeureComentarisMBCN, k.EsOferta, k.NomArticleClient, k.Comentaris, k.Grup, k.OrigenPreu, k.OrigenCarrega, k.Marge, k.Marge2, k.Marge3, k.Marge4, k.Marge5, k.UnitatsReservades
 ,
@@ -54,18 +123,22 @@ left join articulos a on a.IdArticulo = k.Article
  left join Articulos_Familias subgrup on subgrup.IdFamilia = a.IdFamilia
  left join Articulos_Familias grup on grup.IdFamilia = subgrup.IdFamiliaPadre
  left join Articulos_Familias familia on familia.IdFamilia = grup.IdFamiliaPadre
- left join (select top 1 * from (select TipusExcepcio, PercentInc, ImportInc, PercentIncVenda, ImportFix, Tarifa, Client, Article, Subgrup, Grup, Familia
- from puignau..ArticlePreparaClients pugi 
-	union all
-	select TipusExcepcio, PercentInc, ImportInc, PercentIncVenda, ImportFix, Tarifa, Client, Article, Subgrup, Grup, Familia
-	from puignaubcn..ArticlePreparaClients puba) a
-	order by coalesce(Article, Subgrup, Grup, Familia)
-	) as excepcionsPugiPuba on excepcionsPugiPuba.Client = cd.IdCliente 
-	and (excepcionsPugiPuba.Article = k.Article 
-	or excepcionsPugiPuba.Subgrup = subgrup.IdFamilia 
-	or excepcionsPugiPuba.Grup = grup.IdFamilia 
-	or excepcionsPugiPuba.Familia = familia.idfamilia)
+ left join Excepcions as excepcionsArt on excepcionsArt.Client = cd.IdCliente 
+	and (excepcionsArt.Article = k.Article 
+	or excepcionsArt.Subgrup = null
+	or excepcionsArt.Grup = null
+	or excepcionsArt.Familia = null)
+left join Excepcions as excepcionsSGrup on excepcionsSGrup.Client = cd.IdCliente 
+	and (excepcionsSGrup.Article = null 
+	or excepcionsSGrup.Subgrup = subgrup.IdFamilia 
+	or excepcionsSGrup.Grup = null 
+	or excepcionsSGrup.Familia = null)
+left join Excepcions as excepcionsGrup on excepcionsGrup.Client = cd.IdCliente 
+	and (excepcionsGrup.Article = null
+	or excepcionsGrup.Subgrup = null
+	or excepcionsGrup.Grup = grup.IdFamilia 
+	or excepcionsGrup.Familia = null)
+left join Excepcions as excepcionsFam on excepcionsFam.Client = cd.IdCliente 
+	and (excepcionsFam.Article = null or excepcionsFam.Subgrup = null 
+	or excepcionsFam.Grup = null or excepcionsFam.Familia = familia.idfamilia)
 where k.DATA > convert(date,dateadd(day,-10,GETDATE())) and Unitats > 0
-GO
-
-
