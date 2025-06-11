@@ -1,0 +1,6 @@
+{
+    "markdown.validate.enabled": true,
+    "markdown.validate.ignoredLinks": [
+        "/puignau\\CRM\\llotja_crm/top_buttons_image.png"
+    ]
+}

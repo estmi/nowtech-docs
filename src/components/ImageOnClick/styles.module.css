@@ -1,0 +1,8 @@
+  .imageonclick {
+    display: flex;
+    max-width: 50% !important;
+    margin: auto; /* Adjust this value according to your needs */
+  }
+  .cursor {
+    cursor: pointer;
+  }
