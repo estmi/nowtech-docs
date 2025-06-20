@@ -13,7 +13,7 @@ const SqlViewer: React.FC<SqlViewerProps> = ({ file, title }) => {
   const [error, setError] = useState<string | null>(null);
   const [expanded, setExpanded] = useState(false);
 
-  const filename = file.split('\\').pop() || file.split('/').pop() || file;
+  const filename = file.split('\\').pop().split('/').pop() || file;
 
   useEffect(() => {
     fetch(`/${file}`)

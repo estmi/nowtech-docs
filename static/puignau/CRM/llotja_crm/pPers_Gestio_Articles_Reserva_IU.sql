@@ -1,4 +1,4 @@
-ALTER PROCEDURE pPers_Gestio_Articles_Reserva_IU
+ALTER PROCEDURE [dbo].[pPers_Gestio_Articles_Reserva_IU]
 (  --PARAMS OBLIGATORIS
     @NumOrigen		int,
     @Id               INT, 
@@ -61,6 +61,9 @@ BEGIN
 		
 		SELECT top 1 @Article = Article, @TipusUnitat = TipusUnitat, @Queden = Queden , @Data = Data , @comanda = comanda, @Grup = Grup, @Preut1 = PreuMinimAplicable
 			FROM vPers_Gestio_Articles_Reserva_PrePedidoAvui where IdPrePedido = @IdPrePedido and NumOrigen = @NumOrigen and Id = @Id
+
+				
+
 	
 		if @TipusUnitat is null
 		begin
@@ -107,7 +110,7 @@ BEGIN
 			--==========================	ArticleLlotja		========================
 			IF @NumOrigen = 2 --
 			BEGIN
-				if (select top 1 LlotjaReservesActives from [vPers_Gestio_Articles_Reserva_Actius] where IdPrePedido = @IdPrePedido ) = 1
+				if (select top 1 LlotjaReservesActives from [vPers_Gestio_Articles_Reserva_Actius] ) = 1
 				begin
 					set @Preua = 0
 					IF @MODO = 2
@@ -156,7 +159,7 @@ BEGIN
 			--==========================	ArticleNevera		========================
 			IF @NumOrigen = 4 and @Grup = 0  --
 			BEGIN
-				if (select top 1 NeveraReservesActives from [vPers_Gestio_Articles_Reserva_Actius] where IdPrePedido = @IdPrePedido ) = 1
+				if (select top 1 NeveraReservesActives from [vPers_Gestio_Articles_Reserva_Actius] ) = 1
 				begin
 					IF @MODO = 2
 					begin
@@ -204,7 +207,7 @@ BEGIN
 			--==========================	ArticleNevera	TOP	========================
 			IF @NumOrigen = 4 and @Grup = 1  --
 			BEGIN
-				if (select top 1 Nevera1ReservesActives from [vPers_Gestio_Articles_Reserva_Actius] where IdPrePedido = @IdPrePedido ) = 1
+				if (select top 1 Nevera1ReservesActives from [vPers_Gestio_Articles_Reserva_Actius] ) = 1
 				begin
 					IF @MODO = 2
 					begin
@@ -293,7 +296,7 @@ BEGIN
 			--==========================	ArticleOfertes		========================
 			IF @NumOrigen = 5 --
 			BEGIN
-				if (select top 1 OfertaReservesActives from [vPers_Gestio_Articles_Reserva_Actius] where IdPrePedido = @IdPrePedido ) = 1
+				if (select top 1 OfertaReservesActives from [vPers_Gestio_Articles_Reserva_Actius] ) = 1
 				begin
 					IF @MODO = 2
 					begin
@@ -351,56 +354,59 @@ BEGIN
 				if @InsertA = 1
 				begin
 
-                    SELECT 
-                    @TipusUnitat = CASE 
-                                    WHEN @TipusUnitat = 'KGS' THEN 'KG'
-                                    WHEN @TipusUnitat = 'FDO' THEN 'Far.'
-                                    WHEN @TipusUnitat = 'PEC' THEN 'Pec '
-                                    ELSE @TipusUnitat  -- Si no coincide con ningún valor, se mantiene igual
-                                END;
-                    if @ArticleBundle is null
-                    begin
-                        insert into Pers_PrePedido_Lineas (IdPrePedido,IdPrePedidoLinea,IdArticulo,Cantidad,Precio,TipoUnidad,TipoObservacion,Observacion,
-                        IdGestioReserva,OrigenTaula,IdOrigenReserva,LinNueva,PreuFixat)
-                        select @IdPrePedido,
-                                    (select max(IdPrePedidoLinea) +1 from Pers_PrePedido_Lineas where IdPrePedido = @IdPrePedido) as IdPrePedidoLinea,
-                                    @Article,
-                                    @Asignat
-                                    ,@Preua as Precio --HO EMPLENA EL TRIGGER SEGONS FUNDAMEPRECIO
-                                    ,ltrim(rtrim(@TipusUnitat)), @TipusObs as TipoObservacions--HO EMPLENA EL TRIGGER SEGONS CLIENT
-                                    , Concat(@ObsComanda,' ', (select top 1 Observaciones from fPers_ObtenerObservacionClienteArticulo(coalesce(@articlebundle,@Article),@Client)) )
-                                    ,@IdReservaDetall
-                                    , @OrigenTabla
-                                    ,@TipusReserva, 0 as linnueva,
-                                    @preufix as PreuFixat
-                    end
-                    else
-                    begin
-                        DECLARE @IdArticuloFeina T_ID_Articulo, @price T_precio
-                        select @IdArticuloFeina = ac.IdArticulo, @price = precio.Precio from Articulos_Conjuntos ac
-                        left join clientes_datos cd on cd.IdCliente = @Client
-                        left join Clientes_Datos_Economicos cde on cde.IdCliente = cd.IdCliente
-                        outer apply fPers_DamePrecio_Articulo_Delegacion(IdArticulo, cd.IdCliente, cde.IdLista, getdate(), null, null, cd.IdDelegacion) precio
-                        where IdArticuloPadre = @ArticleBundle and ac.IdArticulo != @Article2
+				SELECT 
+				@TipusUnitat = CASE 
+								  WHEN @TipusUnitat = 'KGS' THEN 'KG'
+								  WHEN @TipusUnitat = 'FDO' THEN 'Far.'
+								  WHEN @TipusUnitat = 'PEC' THEN 'Pec '
+								  ELSE @TipusUnitat  -- Si no coincide con ningún valor, se mantiene igual
+							   END;
+				if @ArticleBundle is null
+				begin
+					insert into Pers_PrePedido_Lineas (IdPrePedido,IdPrePedidoLinea,IdArticulo,Cantidad,Precio,TipoUnidad,TipoObservacion,Observacion,
+					IdGestioReserva,OrigenTaula,IdOrigenReserva,LinNueva,PreuFixat)
+					select @IdPrePedido,
+								(select Coalesce(max(IdPrePedidoLinea),0) +1 from Pers_PrePedido_Lineas where IdPrePedido = @IdPrePedido) as IdPrePedidoLinea,
+								@Article,
+								@Asignat
+								,@Preua as Precio --HO EMPLENA EL TRIGGER SEGONS FUNDAMEPRECIO
+								,ltrim(rtrim(@TipusUnitat)), @TipusObs as TipoObservacions--HO EMPLENA EL TRIGGER SEGONS CLIENT
+								, Concat(@ObsComanda,' ', (select top 1 Observaciones from fPers_ObtenerObservacionClienteArticulo(coalesce(@articlebundle,@Article),@Client)) )
+								,@IdReservaDetall
+								, @OrigenTabla
+								,@TipusReserva, 0 as linnueva,
+								@preufix as PreuFixat
+				end
+				else
+				begin
+				DECLARE @IdArticuloFeina T_ID_Articulo, @price T_precio
+				select @IdArticuloFeina = ac.IdArticulo, @price = precio.Precio from Articulos_Conjuntos ac
+				left join clientes_datos cd on cd.IdCliente = @Client
+				left join Clientes_Datos_Economicos cde on cde.IdCliente = cd.IdCliente
+				outer apply fPers_DamePrecio_Articulo_Delegacion(IdArticulo, cd.IdCliente, cde.IdLista, getdate(), null, null, cd.IdDelegacion) precio
+				where IdArticuloPadre = @ArticleBundle and ac.IdArticulo != @Article2
 
-                            insert into Pers_PrePedido_Lineas (IdPrePedido,IdPrePedidoLinea,IdArticulo,Cantidad,Precio,TipoUnidad,TipoObservacion,Observacion,
-                            IdGestioReserva,OrigenTaula,IdOrigenReserva,LinNueva,PreuFixat,IdArticuloHijo, IdArticuloFeina, PrecioFeina)
-                            select @IdPrePedido,
-                                        (select max(IdPrePedidoLinea) +1 from Pers_PrePedido_Lineas where IdPrePedido = @IdPrePedido) as IdPrePedidoLinea,
-                                        @ArticleBundle,
-                                        @Asignat
-                                        ,@Preua as Precio --HO EMPLENA EL TRIGGER SEGONS FUNDAMEPRECIO
-                                        ,ltrim(rtrim(@TipusUnitat)), @TipusObs as TipoObservacions--HO EMPLENA EL TRIGGER SEGONS CLIENT
-                                        , Concat(@ObsComanda,' ', (select top 1 Observaciones from fPers_ObtenerObservacionClienteArticulo(coalesce(@articlebundle,@Article),@Client)) )
-                                        ,@IdReservaDetall
-                                        , @OrigenTabla
-                                        ,@TipusReserva, 0 as linnueva,
-                                        @preufix as PreuFixat,
-                                        @Article2, @IdArticuloFeina, @price
+					insert into Pers_PrePedido_Lineas (IdPrePedido,IdPrePedidoLinea,IdArticulo,Cantidad,Precio,TipoUnidad,TipoObservacion,Observacion,
+					IdGestioReserva,OrigenTaula,IdOrigenReserva,LinNueva,PreuFixat,IdArticuloHijo, IdArticuloFeina, PrecioFeina)
+					select @IdPrePedido,
+								(select max(IdPrePedidoLinea) +1 from Pers_PrePedido_Lineas where IdPrePedido = @IdPrePedido) as IdPrePedidoLinea,
+								@ArticleBundle,
+								@Asignat
+								,@Preua as Precio --HO EMPLENA EL TRIGGER SEGONS FUNDAMEPRECIO
+								,ltrim(rtrim(@TipusUnitat)), @TipusObs as TipoObservacions--HO EMPLENA EL TRIGGER SEGONS CLIENT
+								, Concat(@ObsComanda,' ', (select top 1 Observaciones from fPers_ObtenerObservacionClienteArticulo(coalesce(@articlebundle,@Article),@Client)) )
+								,@IdReservaDetall
+								, @OrigenTabla
+								,@TipusReserva, 0 as linnueva,
+								@preufix as PreuFixat,
+								@Article2, @IdArticuloFeina, @price
 
-                    end
-			    end 
-		    end
+				end
+				end 
+		end
+
+	
+
 		end
 		else
 		begin
