@@ -19,7 +19,7 @@ const config: Config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'estmi', // Usually your GitHub org/user name.
-  projectName: 'estmi.github.io', // Usually your repo name.
+  projectName: 'nowtech-docs', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
