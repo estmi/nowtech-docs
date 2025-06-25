@@ -14,7 +14,7 @@ const SqlViewer: React.FC<SqlViewerProps> = ({ file, title }) => {
   const [expanded, setExpanded] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const filename = file.split('/').pop() || file;
+  const filename = file.split('/').pop().split('\\').pop().split('.')[0] || file;
 
   const loadSql = () => {
     setError(null);
@@ -53,7 +53,7 @@ const SqlViewer: React.FC<SqlViewerProps> = ({ file, title }) => {
       <div className={styles.header}>
         <strong>{title || filename}</strong>
         <div className={styles.actions}>
-          <button onClick={handleCopy}>{copied ? 'Copiat' : 'Copiar'}</button>
+          <button onClick={handleCopy}>{copied ? 'Copiat' :  'Copiar'}</button>
           {isTruncated && (
             <button onClick={handleToggle}>
               {expanded ? 'Amagar linies' : 'Veure tot'}
