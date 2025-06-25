@@ -144,13 +144,3 @@ Pasar a predeterminat:
 ## Taula `Scripts`
 
 Conte els scripts generats
-
-[crear_script]: /ahora\ahora-5-N2\crear_script.png
-[create_searcher]: /ahora\ahora-5-N2\create_searcher.png
-[defs_pers_mitabla]: /ahora\ahora-5-N2\defs_pers_mitabla.png
-[enable_seguimientos]: /ahora\ahora-5-N2\enable_seguimientos.png
-[searcher_created]: /ahora\ahora-5-N2\searcher_created.png
-[select_user_to_send]: /ahora\ahora-5-N2\select_user_to_send.png
-[send_seguimientos_filter_to_dashboard]: /ahora\ahora-5-N2\send_seguimientos_filter_to_dashboard.png
-[send_to_user]: /ahora\ahora-5-N2\send_to_user.png
-[share_searcher]: /ahora\ahora-5-N2\share_searcher.png

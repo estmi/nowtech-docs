@@ -9,5 +9,3 @@
 ## Generar una reserva
 
 <SqlViewer file="puignau\CRM\llotja_crm\pPers_Gestio_Articles_Reserva_IU.sql"/>
-
-[top_buttons_image]: \nowtech-docs/puignau\CRM\llotja_crm\top_buttons_image.png
