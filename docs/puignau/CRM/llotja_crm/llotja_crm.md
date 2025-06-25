@@ -10,4 +10,4 @@
 
 <SqlViewer file="puignau\CRM\llotja_crm\pPers_Gestio_Articles_Reserva_IU.sql"/>
 
-[top_buttons_image]: /puignau\CRM\llotja_crm/top_buttons_image.png
+[top_buttons_image]: \nowtech-docs/puignau\CRM\llotja_crm\top_buttons_image.png
