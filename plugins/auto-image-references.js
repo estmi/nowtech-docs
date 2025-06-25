@@ -30,7 +30,7 @@ module.exports = function autoImageReferencesPlugin(context, options) {
             const extname = path.extname(file).toLowerCase();
             if (['.jpg', '.jpeg', '.png', '.gif', '.svg'].includes(extname)) {
               const imageName = path.basename(file, extname);
-              const imagePath = `/nowtech-docs/${path.relative(staticDir, path.join(staticFolder, file))}`;
+              const imagePath = `/nowtech-docs/${path.relative(staticDir, path.join(staticFolder, file))}`.replace(/\\/g, "/");
               imageReferences.push({ imageName, imagePath });
             }
           });
@@ -46,7 +46,7 @@ module.exports = function autoImageReferencesPlugin(context, options) {
               const extname = path.extname(file).toLowerCase();
               if (['.jpg', '.jpeg', '.png', '.gif', '.svg'].includes(extname)) {
                 const imageName = path.basename(file, extname);
-                const imagePath = `/${path.relative(staticDir, path.join(subFolder, file))}`;
+                const imagePath = `/nowtech-docs/${path.relative(staticDir, path.join(subFolder, file))}`.replace(/\\/g, "/");
                 imageReferences.push({ imageName, imagePath });
               }
             });
