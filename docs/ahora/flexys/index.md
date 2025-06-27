@@ -2,6 +2,9 @@
 
 [http://localhost/PuignauCRMTest](http://localhost/PuignauCRMTest)
 
-[http://localhost/INCIDENCIES_TEST](http://localhost/INCIDENCIES_TEST)
+## Decrypt ConnectionStrings
 
-[http://localhost/INVENTARI_IT](http://localhost/INVENTARI_IT)
+```batch
+cd C:\Windows\Microsoft.NET\Framework\v4.0.30319
+./aspnet_regiis.exe -pdf "connectionStrings" C:\inetpub\wwwroot\PuignauCRMTest
+```

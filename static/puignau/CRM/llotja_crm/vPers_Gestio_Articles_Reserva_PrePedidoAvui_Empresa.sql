@@ -1,16 +1,21 @@
 ALTER view [dbo].[vPers_Gestio_Articles_Reserva_PrePedidoAvui_Empresa]
 as
-with Excepcions as (select TipusExcepcio, PercentInc, ImportInc, PercentIncVenda, ImportFix, Tarifa, Client, Article, Subgrup, Grup, Familia
- from puignau..ArticlePreparaClients pugi 
+with Excepcions as (
+	select TipusExcepcio, PercentInc, ImportInc, PercentIncVenda, ImportFix, Tarifa, Client, Article, Subgrup, Grup, Familia
+	from puignau..ArticlePreparaClients pugi 
+	where getdate() between DataInici and DataFi
 	union all
 	select TipusExcepcio, PercentInc, ImportInc, PercentIncVenda, ImportFix, Tarifa, Client, Article, Subgrup, Grup, Familia
 	from puignaubcn..ArticlePreparaClients puba
+	where getdate() between DataInici and DataFi
 	union all
 	select TipusExcepcio, PercentInc, ImportInc, PercentIncVenda, ImportFix, Tarifa, Client, Article, Subgrup, Grup, Familia
- from puignau..Articlellotjaexcepcions pugi 
+	from puignau..Articlellotjaexcepcions pugi 
+	where getdate() between DataInici and DataFi
 	union all
 	select TipusExcepcio, PercentInc, ImportInc, PercentIncVenda, ImportFix, Tarifa, Client, Article, Subgrup, Grup, Familia
-	from puignaubcn..Articlellotjaexcepcions puba)
+	from puignaubcn..Articlellotjaexcepcions puba
+	where getdate() between DataInici and DataFi)
 
 select  p.IdPrePedido,k.Origen,
  k.Id, k.Data, k.Article, k.Nom, k.NomFrances, k.NomCastella, k.TipusUnitat, k.Unitats, k.PreuCost, k.PreuCostBotiga, ept.PermetT1,
@@ -27,15 +32,15 @@ select  p.IdPrePedido,k.Origen,
 		case 
 			when excepcionsArt.Article is not null then
 				case excepcionsArt.TipusExcepcio 
-					when 1 then k.PreuCost * excepcionsArt.PercentInc -- % Sobre cost
-					when 2 then k.PreuCost + excepcionsArt.ImportInc -- € Sobre Cost
+					when 1 then k.PreuCost * excepcionsArt.PercentInc / 100 + k.PreuCost -- % Sobre cost
+					when 2 then k.PreuCost + excepcionsArt.ImportInc -- â‚¬ Sobre Cost
 					when 3 then -- % Sobre Tarifa
 						case excepcionsArt.Tarifa 
-							when 1 then PreuVenda1 * excepcionsArt.PercentIncVenda
-							when 2 then PreuVenda2 * excepcionsArt.PercentIncVenda
-							when 3 then PreuVenda3 * excepcionsArt.PercentIncVenda
-							when 4 then PreuVenda4 * excepcionsArt.PercentIncVenda
-							when 5 then PreuVenda5 * excepcionsArt.PercentIncVenda
+							when 1 then PreuVenda1 * excepcionsArt.PercentIncVenda / 100 + PreuVenda1
+							when 2 then PreuVenda2 * excepcionsArt.PercentIncVenda / 100 + PreuVenda2
+							when 3 then PreuVenda3 * excepcionsArt.PercentIncVenda / 100 + PreuVenda3
+							when 4 then PreuVenda4 * excepcionsArt.PercentIncVenda / 100 + PreuVenda4
+							when 5 then PreuVenda5 * excepcionsArt.PercentIncVenda / 100 + PreuVenda5
 						else PreuVenda1
 						end
 					when 4 then excepcionsArt.ImportFix -- Preu Fix
@@ -43,15 +48,15 @@ select  p.IdPrePedido,k.Origen,
 				end
 			when excepcionsSGrup.subgrup is not null then
 				case excepcionsSGrup.TipusExcepcio 
-					when 1 then k.PreuCost * excepcionsSGrup.PercentInc -- % Sobre cost
-					when 2 then k.PreuCost + excepcionsSGrup.ImportInc -- € Sobre Cost
+					when 1 then k.PreuCost * excepcionsSGrup.PercentInc / 100 + k.PreuCost -- % Sobre cost
+					when 2 then k.PreuCost + excepcionsSGrup.ImportInc -- â‚¬ Sobre Cost
 					when 3 then -- % Sobre Tarifa
 						case excepcionsSGrup.Tarifa 
-							when 1 then PreuVenda1 * excepcionsSGrup.PercentIncVenda
-							when 2 then PreuVenda2 * excepcionsSGrup.PercentIncVenda
-							when 3 then PreuVenda3 * excepcionsSGrup.PercentIncVenda
-							when 4 then PreuVenda4 * excepcionsSGrup.PercentIncVenda
-							when 5 then PreuVenda5 * excepcionsSGrup.PercentIncVenda
+							when 1 then PreuVenda1 * excepcionsSGrup.PercentIncVenda / 100 + PreuVenda1
+							when 2 then PreuVenda2 * excepcionsSGrup.PercentIncVenda / 100 + PreuVenda2
+							when 3 then PreuVenda3 * excepcionsSGrup.PercentIncVenda / 100 + PreuVenda3
+							when 4 then PreuVenda4 * excepcionsSGrup.PercentIncVenda / 100 + PreuVenda4
+							when 5 then PreuVenda5 * excepcionsSGrup.PercentIncVenda / 100 + PreuVenda5
 						else PreuVenda1
 						end
 					when 4 then excepcionsSGrup.ImportFix -- Preu Fix
@@ -59,15 +64,15 @@ select  p.IdPrePedido,k.Origen,
 				end
 			when excepcionsGrup.Grup is not null then
 				case excepcionsGrup.TipusExcepcio 
-					when 1 then k.PreuCost * excepcionsGrup.PercentInc -- % Sobre cost
-					when 2 then k.PreuCost + excepcionsGrup.ImportInc -- € Sobre Cost
+					when 1 then k.PreuCost * excepcionsGrup.PercentInc / 100 + k.PreuCost -- % Sobre cost
+					when 2 then k.PreuCost + excepcionsGrup.ImportInc -- â‚¬ Sobre Cost
 					when 3 then -- % Sobre Tarifa
 						case excepcionsGrup.Tarifa 
-							when 1 then PreuVenda1 * excepcionsGrup.PercentIncVenda
-							when 2 then PreuVenda2 * excepcionsGrup.PercentIncVenda
-							when 3 then PreuVenda3 * excepcionsGrup.PercentIncVenda
-							when 4 then PreuVenda4 * excepcionsGrup.PercentIncVenda
-							when 5 then PreuVenda5 * excepcionsGrup.PercentIncVenda
+							when 1 then (PreuVenda1 * excepcionsGrup.PercentIncVenda / 100) + PreuVenda1
+							when 2 then (PreuVenda2 * excepcionsGrup.PercentIncVenda / 100) + PreuVenda2
+							when 3 then (PreuVenda3 * excepcionsGrup.PercentIncVenda / 100) + PreuVenda3
+							when 4 then (PreuVenda4 * excepcionsGrup.PercentIncVenda / 100) + PreuVenda4
+							when 5 then (PreuVenda5 * excepcionsGrup.PercentIncVenda / 100) + PreuVenda5
 						else PreuVenda1
 						end
 					when 4 then excepcionsGrup.ImportFix -- Preu Fix
@@ -75,15 +80,15 @@ select  p.IdPrePedido,k.Origen,
 				end
 			when excepcionsFam.Familia is not null then
 				case excepcionsFam.TipusExcepcio 
-					when 1 then k.PreuCost * excepcionsFam.PercentInc -- % Sobre cost
-					when 2 then k.PreuCost + excepcionsFam.ImportInc -- € Sobre Cost
+					when 1 then k.PreuCost * excepcionsFam.PercentInc / 100 + k.PreuCost -- % Sobre cost
+					when 2 then k.PreuCost + excepcionsFam.ImportInc -- â‚¬ Sobre Cost
 					when 3 then -- % Sobre Tarifa
 						case excepcionsFam.Tarifa 
-							when 1 then PreuVenda1 * excepcionsFam.PercentIncVenda
-							when 2 then PreuVenda2 * excepcionsFam.PercentIncVenda
-							when 3 then PreuVenda3 * excepcionsFam.PercentIncVenda
-							when 4 then PreuVenda4 * excepcionsFam.PercentIncVenda
-							when 5 then PreuVenda5 * excepcionsFam.PercentIncVenda
+							when 1 then (PreuVenda1 * excepcionsFam.PercentIncVenda / 100) + PreuVenda1
+							when 2 then (PreuVenda2 * excepcionsFam.PercentIncVenda / 100) + PreuVenda2
+							when 3 then (PreuVenda3 * excepcionsFam.PercentIncVenda / 100) + PreuVenda3
+							when 4 then (PreuVenda4 * excepcionsFam.PercentIncVenda / 100) + PreuVenda4
+							when 5 then (PreuVenda5 * excepcionsFam.PercentIncVenda / 100) + PreuVenda5
 						else PreuVenda1
 						end
 					when 4 then excepcionsFam.ImportFix -- Preu Fix
@@ -92,8 +97,6 @@ select  p.IdPrePedido,k.Origen,
 			else PreuVenda1
 			end
  else precio.precio end
- 
- 
  , precio.precio) as PreuMinimAplicable,
  cc.P_TipusABC,
  k.PreuVenda1Minim, k.PreuVendaBotiga, k.Descte2, k.Descte3, k.Descte4, k.Descte5, k.IncT2, k.PreuVendaT2, k.Bloquejat, k.PendentArribar, k.KgsPerFardo, k.KgsPerPeca, k.PecesPerFardo, k.Kgs, k.UnitatMesura, k.PreuCostTotal, k.ConversioKgs, k.TipusLiquidacio, k.TipusMotiu,  convert(varchar(100),k.Motiu) as Motiu, k.CasellaCompra, k.Avis, k.AmbAlbara, k.Visible, k.UltimPreuVenda1, k.VeureComentarisMBCN, k.EsOferta, k.NomArticleClient, k.Comentaris, k.Grup, k.OrigenPreu, k.OrigenCarrega, k.Marge, k.Marge2, k.Marge3, k.Marge4, k.Marge5, k.UnitatsReservades
@@ -101,7 +104,8 @@ select  p.IdPrePedido,k.Origen,
 CONCAT(p.IdPrePedido,'-',k.Origen,'-',k.Id) as CustomId,vvv.Num as NumOrigen, Unitats-UnitatsReservades as Queden,
 
 kk.Comanda as Comanda , case when k.Origen = 'ArticleNevera' and k.Grup = 0 then 'NEV' WHEN  k.Origen = 'ArticleNevera' and k.Grup = 1 THEN 'TOP' ELSE '' end AS NomGrup,
-case when k.Comentaris is null or ltrim(rtrim( k.Comentaris )) = '' then '' else 'background-color: #ffe285 !important;' end as ColorComentaris
+case when k.Comentaris is null or ltrim(rtrim( k.Comentaris )) = '' then '' else 'background-color: #ffe285 !important;' end as ColorComentaris,
+case when k.Origen = 'ArticleOferta' then concat('<td>',REPLICATE('R', k.TipusLiquidacio), '</td>') else '' end as ColumnaRLiq
 
 from [vPers_Gestio_Articles_Reserva_Empresa] k
 left join Pers_PrePedido p on 1=1 and p.IdEmpresa = k.IdEmpresa
