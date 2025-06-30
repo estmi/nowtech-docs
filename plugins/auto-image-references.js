@@ -93,7 +93,7 @@ module.exports = function autoImageReferencesPlugin(context, options) {
               if (isLastLineReference) {
                 updatedContent = `${updatedContent}${missingReferences.map((ref) => `[${ref.imageName}]: ${ref.imagePath}`).join('\n')}`;
               } else {
-                updatedContent = `${updatedContent}\n\n${missingReferences.map((ref) => `[${ref.imageName}]: ${ref.imagePath}`).join('\n')}`;
+                updatedContent = `${updatedContent}\n${missingReferences.map((ref) => `[${ref.imageName}]: ${ref.imagePath}`).join('\n')}`;
               }
 
               // Ensure the file ends with a newline

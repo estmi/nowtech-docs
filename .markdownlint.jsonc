@@ -65,13 +65,14 @@
   },
 
   // MD013/line-length : Line length : https://github.com/DavidAnson/markdownlint/blob/v0.38.0/doc/md013.md
-  "MD013": {
+  "MD013": false
+  /*{
     // Number of characters
-    "line_length": 120,
+    "line_length": false,
     // Number of characters for headings
     "heading_line_length": 80,
     // Number of characters for code blocks
-    "code_block_line_length": 80,
+    "code_block_line_length": 120,
     // Include code blocks
     "code_blocks": true,
     // Include tables
@@ -82,7 +83,7 @@
     "strict": false,
     // Stern length checking
     "stern": false
-  },
+  }*/,
 
   // MD014/commands-show-output : Dollar signs used before commands without showing output : https://github.com/DavidAnson/markdownlint/blob/v0.38.0/doc/md014.md
   "MD014": true,
