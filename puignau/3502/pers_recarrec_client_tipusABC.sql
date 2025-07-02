@@ -45,12 +45,33 @@ ZPermisos vpers_recarrec_client_tipusABC;
 GO
 
 -- Crear Objecte
-INSERT INTO OBJETOS(Objeto,Descrip,SQL,FiltroDefecto,Limita,Menu,Tabla,Coleccion,AltaDirecta,Personalizado,Libreria,Raiz,Icono1,IdClasificacion) VALUES('Recarrec TipusABC','Recarrec de TipusABC','SELECT * FROM pers_recarrec_client_tipusABC','SELECT * FROM pers_recarrec_client_tipusABC',0,0,'pers_recarrec_client_tipusABC',0,1,1,'AhoraSistema',0,123,0);
+INSERT INTO OBJETOS(Objeto,Descrip,SQL,FiltroDefecto,
+	Limita,Menu,Tabla,Coleccion,AltaDirecta,Personalizado,
+	Libreria,Raiz,Icono1,IdClasificacion) 
+VALUES('Recarrec TipusABC','Recarrec de TipusABC','SELECT * FROM pers_recarrec_client_tipusABC','SELECT * FROM pers_recarrec_client_tipusABC',
+	0,0,'pers_recarrec_client_tipusABC',0,1,1,
+	'AhoraSistema',0,123,0);
 -- Update Objecte
-UPDATE Objetos SET Sql='SELECT * FROM vpers_recarrec_client_tipusABC',CadenaDescrip='[TipusABC] - [importMinim]' WHERE Objeto='Recarrec TipusABC';
+UPDATE Objetos 
+SET Sql='SELECT * FROM vpers_recarrec_client_tipusABC',
+	CadenaDescrip='[TipusABC] - [importMinim]' 
+WHERE Objeto='Recarrec TipusABC';
 
 -- Insert Coleccion
-INSERT INTO OBJETOS(Objeto,Descrip,SQL,FiltroDefecto,Limita,Menu,Tabla,Coleccion,AltaDirecta,Personalizado,Libreria,Raiz,Icono1,IdClasificacion) VALUES('Recarrecs TipusABC','Recarrecs de TipusABC','SELECT * FROM pers_recarrec_client_tipusABC','SELECT * FROM pers_recarrec_client_tipusABC',0,0,'pers_recarrec_client_tipusABC',1,1,1,'AhoraSistema',1,123,0);
-INSERT INTO Objetos_Propiedades(Objeto,Propiedad,Descrip) SELECT 'Recarrecs TipusABC',CAmpo,Campo FROM dbo.funDameObjetosCamposTipos('pers_recarrec_client_tipusABC') WHERE not Campo IN ('IdDoc','FechaInsertUpdate','InsertUpdate','Usuario');
-UPDATE Objetos SET HijoDefecto='Recarrec TipusABC' WHERE Objeto='Recarrecs TipusABC';
-UPDATE Objetos SET CadenaDescrip='[TipusABC] - [importMinim]' WHERE Objeto='Recarrecs TipusABC';
+INSERT INTO OBJETOS(Objeto,Descrip,SQL,FiltroDefecto,
+	Limita,Menu,Tabla,Coleccion,AltaDirecta,Personalizado,
+	Libreria,Raiz,Icono1,IdClasificacion) 
+VALUES('Recarrecs TipusABC','Recarrecs de TipusABC','SELECT * FROM pers_recarrec_client_tipusABC','SELECT * FROM pers_recarrec_client_tipusABC',
+	0,0,'pers_recarrec_client_tipusABC',1,1,1,
+	'AhoraSistema',1,123,0);
+-- Crear Camps Coleccio
+INSERT INTO Objetos_Propiedades(Objeto,Propiedad,Descrip) 
+SELECT 'Recarrecs TipusABC',CAmpo,Campo 
+FROM dbo.funDameObjetosCamposTipos('pers_recarrec_client_tipusABC') 
+WHERE not Campo 
+	IN ('IdDoc','FechaInsertUpdate','InsertUpdate','Usuario');
+-- Update Coleccio
+UPDATE Objetos 
+SET HijoDefecto='Recarrec TipusABC',
+	CadenaDescrip='[TipusABC] - [importMinim]'
+WHERE Objeto='Recarrecs TipusABC';
