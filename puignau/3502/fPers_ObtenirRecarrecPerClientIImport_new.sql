@@ -1,5 +1,3 @@
-USE [PuignauERP3]
-GO
 ALTER FUNCTION [dbo].[fPers_ObtenirRecarrecPerClientIImport_new]
 (
 	@Client T_Id_Cliente,
