@@ -28,13 +28,21 @@ ALTER TABLE pers_recarrec_client_tipusABC ADD CONSTRAINT DF_pers_recarrec_client
 ALTER TABLE pers_recarrec_client_tipusABC ADD CONSTRAINT DF_pers_recarrec_client_tipusABC_Usuario  DEFAULT (user_name()) FOR [Usuario]
 ALTER TABLE pers_recarrec_client_tipusABC ADD CONSTRAINT DF_pers_recarrec_client_tipusABC_FechaInsertUpdate  DEFAULT (getdate()) FOR [FechaInsertUpdate]
 
+GO
+
 ZPermisos pers_recarrec_client_tipusABC;
+
+GO
 
 CREATE OR ALTER VIEW vpers_recarrec_client_tipusABC as
 Select recarrec.*
 from pers_recarrec_client_tipusABC recarrec;
 
+GO
+
 ZPermisos vpers_recarrec_client_tipusABC;
+
+GO
 
 -- Crear Objecte
 INSERT INTO OBJETOS(Objeto,Descrip,SQL,FiltroDefecto,Limita,Menu,Tabla,Coleccion,AltaDirecta,Personalizado,Libreria,Raiz,Icono1,IdClasificacion) VALUES('Recarrec TipusABC','Recarrec de TipusABC','SELECT * FROM pers_recarrec_client_tipusABC','SELECT * FROM pers_recarrec_client_tipusABC',0,0,'pers_recarrec_client_tipusABC',0,1,1,'AhoraSistema',0,123,0);
