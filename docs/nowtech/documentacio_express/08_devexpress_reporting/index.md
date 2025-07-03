@@ -96,6 +96,24 @@ Ara perque quedi una mica mes bonic, a l'apartat del `Top Margin` (s'imprimeix c
 
 ![designer_explorer_tree_after_top_margin]
 
+## Agrupacions
+
+Per poder fer una agrupacio anirem a la part inferior a una pestanya de `Group and Sort` i alla podrem afegir tant un grup com un ordre. Per afegir una agrupacio, farem clic a `Add a Group` i seleccionarem la columna a fer l'agrupacio:
+
+![designer_add_grouping]
+
+Despres podrem moure les celes de titol a aquesta banda i afegir un titol de grup:
+
+![designer_grouping_set_header]
+
+Per obtenir:
+
+![resultat_agrupacions_capcalera]
+
+Podem especificar que faci un salt de pagina al acabar el grup i comencar un de nou:
+
+![grouping_poage_break]
+
 ## Detalls finals
 
 Ara aplicarem que les linies imparelles tinguin un estil de fons, siguin grises per poder veure millor la linia que enfoques, selecionant la banda `Detail` i a l'apartat de `Properties` buscarem `Styles` i dins d'ella `Odd Style`. Un cop a la propietat seleccionarem el desplegable i seleccionarem un Style ja creat, en cas de voler crear-ne un de nou, seleccionarem la opcio de `(New)`. Un cop aplicat en nou `Style` el podrem tunejar a les nostres necessitats, en aquest cas el `Background Color` li assignarem un color grisos.
@@ -119,11 +137,14 @@ Tambe com que l'informe pot ser molt llarg, li posarem en el `Bottom Margin` un 
 [query_manager_create_query_join_prompt_completed]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/query_manager_create_query_join_prompt_completed.png
 [query_manager_create_query_join_prompt_result]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/query_manager_create_query_join_prompt_result.png
 [field_list_acabat]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/field_list_acabat.png
-
 [designer_add_clients_data]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/designer_add_clients_data.png
 [designer_add_clients_data_report_explorer_tree]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/designer_add_clients_data_report_explorer_tree.png
 [designer_add_top_margin_cell_label]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/designer_add_top_margin_cell_label.png
 [designer_explorer_tree_after_top_margin]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/designer_explorer_tree_after_top_margin.png
 [ultims_detalls]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/ultims_detalls.png
-
 [resultat]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/resultat.png
+[designer_add_grouping]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/designer_add_grouping.png
+[designer_grouping_set_header]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/designer_grouping_set_header.png
+[resultat_agrupacions_capcalera]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/resultat_agrupacions_capcalera.png
+
+[grouping_poage_break]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/grouping_poage_break.png

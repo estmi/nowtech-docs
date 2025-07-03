@@ -17,14 +17,61 @@ CREATE TABLE pers_recarrec_client_tipusABC(
 	[IdDoc] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
-ALTER TABLE pers_recarrec_client_tipusABC ADD  CONSTRAINT DF_pers_recarrec_client_tipusABC_InsertUpdate  DEFAULT ((0)) FOR [InsertUpdate]
-ALTER TABLE pers_recarrec_client_tipusABC ADD  CONSTRAINT DF_pers_recarrec_client_tipusABC_Usuario  DEFAULT (user_name()) FOR [Usuario]
-ALTER TABLE pers_recarrec_client_tipusABC ADD  CONSTRAINT DF_pers_recarrec_client_tipusABC_FechaInsertUpdate  DEFAULT (getdate()) FOR [FechaInsertUpdate]
+ALTER TABLE pers_recarrec_client_tipusABC ADD CONSTRAINT DF_pers_recarrec_client_tipusABC_InsertUpdate  DEFAULT ((0)) FOR [InsertUpdate]
+ALTER TABLE pers_recarrec_client_tipusABC ADD CONSTRAINT DF_pers_recarrec_client_tipusABC_importDilluns  DEFAULT ((0)) FOR [importDilluns]
+ALTER TABLE pers_recarrec_client_tipusABC ADD CONSTRAINT DF_pers_recarrec_client_tipusABC_importDimarts  DEFAULT ((0)) FOR [importDimarts]
+ALTER TABLE pers_recarrec_client_tipusABC ADD CONSTRAINT DF_pers_recarrec_client_tipusABC_importDimecres  DEFAULT ((0)) FOR [importDimecres]
+ALTER TABLE pers_recarrec_client_tipusABC ADD CONSTRAINT DF_pers_recarrec_client_tipusABC_importDijous  DEFAULT ((0)) FOR [importDijous]
+ALTER TABLE pers_recarrec_client_tipusABC ADD CONSTRAINT DF_pers_recarrec_client_tipusABC_importDivendres  DEFAULT ((0)) FOR [importDivendres]
+ALTER TABLE pers_recarrec_client_tipusABC ADD CONSTRAINT DF_pers_recarrec_client_tipusABC_importDissabte  DEFAULT ((0)) FOR [importDissabte]
+ALTER TABLE pers_recarrec_client_tipusABC ADD CONSTRAINT DF_pers_recarrec_client_tipusABC_importDiumenge  DEFAULT ((0)) FOR [importDiumenge]
+ALTER TABLE pers_recarrec_client_tipusABC ADD CONSTRAINT DF_pers_recarrec_client_tipusABC_Usuario  DEFAULT (user_name()) FOR [Usuario]
+ALTER TABLE pers_recarrec_client_tipusABC ADD CONSTRAINT DF_pers_recarrec_client_tipusABC_FechaInsertUpdate  DEFAULT (getdate()) FOR [FechaInsertUpdate]
+
+GO
 
 ZPermisos pers_recarrec_client_tipusABC;
+
+GO
 
 CREATE OR ALTER VIEW vpers_recarrec_client_tipusABC as
 Select recarrec.*
 from pers_recarrec_client_tipusABC recarrec;
 
+GO
+
 ZPermisos vpers_recarrec_client_tipusABC;
+
+GO
+
+-- Crear Objecte
+INSERT INTO OBJETOS(Objeto,Descrip,SQL,FiltroDefecto,
+	Limita,Menu,Tabla,Coleccion,AltaDirecta,Personalizado,
+	Libreria,Raiz,Icono1,IdClasificacion) 
+VALUES('Recarrec TipusABC','Recarrec de TipusABC','SELECT * FROM pers_recarrec_client_tipusABC','SELECT * FROM pers_recarrec_client_tipusABC',
+	0,0,'pers_recarrec_client_tipusABC',0,1,1,
+	'AhoraSistema',0,123,0);
+-- Update Objecte
+UPDATE Objetos 
+SET Sql='SELECT * FROM vpers_recarrec_client_tipusABC',
+	CadenaDescrip='[TipusABC] - [importMinim]' 
+WHERE Objeto='Recarrec TipusABC';
+
+-- Insert Coleccion
+INSERT INTO OBJETOS(Objeto,Descrip,SQL,FiltroDefecto,
+	Limita,Menu,Tabla,Coleccion,AltaDirecta,Personalizado,
+	Libreria,Raiz,Icono1,IdClasificacion) 
+VALUES('Recarrecs TipusABC','Recarrecs de TipusABC','SELECT * FROM pers_recarrec_client_tipusABC','SELECT * FROM pers_recarrec_client_tipusABC',
+	0,0,'pers_recarrec_client_tipusABC',1,1,1,
+	'AhoraSistema',1,123,0);
+-- Crear Camps Coleccio
+INSERT INTO Objetos_Propiedades(Objeto,Propiedad,Descrip) 
+SELECT 'Recarrecs TipusABC',CAmpo,Campo 
+FROM dbo.funDameObjetosCamposTipos('pers_recarrec_client_tipusABC') 
+WHERE not Campo 
+	IN ('IdDoc','FechaInsertUpdate','InsertUpdate','Usuario');
+-- Update Coleccio
+UPDATE Objetos 
+SET HijoDefecto='Recarrec TipusABC',
+	CadenaDescrip='[TipusABC] - [importMinim]'
+WHERE Objeto='Recarrecs TipusABC';

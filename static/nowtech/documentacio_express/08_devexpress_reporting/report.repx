@@ -3,51 +3,37 @@
   <Bands>
     <Item1 Ref="2" ControlType="TopMarginBand" Name="TopMargin" HeightF="254" Dpi="254">
       <Controls>
-        <Item1 Ref="3" ControlType="XRPageInfo" Name="pageInfo2" PageInfo="DateTime" AnchorVertical="Top" TextAlignment="TopRight" SizeF="531.8125,58.42" LocationFloat="1035.1875,25.000008" Dpi="254" Padding="2,2,0,0,96">
+        <Item1 Ref="3" ControlType="XRPageInfo" Name="pageInfo2" PageInfo="DateTime" AnchorVertical="Top" TextAlignment="TopRight" SizeF="531.8125,58.42" LocationFloat="1035.1875,25.000008" Dpi="254" Padding="5,5,0,0,254">
           <StylePriority Ref="4" UseTextAlignment="false" />
         </Item1>
-        <Item2 Ref="5" ControlType="XRTable" Name="table2" SizeF="1592,63.5" LocationFloat="0,190.5" Dpi="254" Padding="0,0,0,0,254">
-          <Rows>
-            <Item1 Ref="6" ControlType="XRTableRow" Name="tableRow2" Weight="1" Dpi="254">
-              <Cells>
-                <Item1 Ref="7" ControlType="XRTableCell" Name="tableCell4" Weight="0.2670774603608864" Multiline="true" Text="# Client" TextAlignment="TopRight" Dpi="254">
-                  <StylePriority Ref="8" UseTextAlignment="false" />
-                </Item1>
-                <Item2 Ref="9" ControlType="XRTableCell" Name="tableCell5" Weight="2.3661277042561446" Multiline="true" Text="Nom Client" Dpi="254" />
-                <Item3 Ref="10" ControlType="XRTableCell" Name="tableCell6" Weight="0.3667948353829695" Multiline="true" Text="Tipus ABC" Dpi="254" />
-              </Cells>
-            </Item1>
-          </Rows>
-          <StylePriority Ref="11" UsePadding="false" />
-        </Item2>
       </Controls>
     </Item1>
-    <Item2 Ref="12" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="254" Dpi="254">
+    <Item2 Ref="5" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="254" Dpi="254">
       <Controls>
-        <Item1 Ref="13" ControlType="XRPageInfo" Name="pageInfo1" TextAlignment="TopRight" SizeF="254,58.42" LocationFloat="1313,170.58003" Dpi="254" Padding="2,2,0,0,96">
-          <StylePriority Ref="14" UseTextAlignment="false" />
+        <Item1 Ref="6" ControlType="XRPageInfo" Name="pageInfo1" TextAlignment="TopRight" SizeF="254,58.42" LocationFloat="1313,170.58003" Dpi="254" Padding="5,5,0,0,254">
+          <StylePriority Ref="7" UseTextAlignment="false" />
         </Item1>
       </Controls>
     </Item2>
-    <Item3 Ref="15" ControlType="DetailBand" Name="Detail" HeightF="64" Dpi="254" OddStyleName="Style1">
+    <Item3 Ref="8" ControlType="DetailBand" Name="Detail" HeightF="64" Dpi="254" OddStyleName="Style1">
       <Controls>
-        <Item1 Ref="16" ControlType="XRTable" Name="table1" SizeF="1592,64" LocationFloat="0,0" Dpi="254" Padding="2,2,0,0,96">
+        <Item1 Ref="9" ControlType="XRTable" Name="table1" SizeF="1592,64" LocationFloat="0,0" Dpi="254" Padding="2,2,0,0,96">
           <Rows>
-            <Item1 Ref="17" ControlType="XRTableRow" Name="tableRow1" Weight="0.5609756097560976" Dpi="254">
+            <Item1 Ref="10" ControlType="XRTableRow" Name="tableRow1" Weight="0.5609756097560976" Dpi="254">
               <Cells>
-                <Item1 Ref="18" ControlType="XRTableCell" Name="tableCell1" Weight="0.08173215607071915" Multiline="true" TextAlignment="TopRight" Dpi="254">
+                <Item1 Ref="11" ControlType="XRTableCell" Name="tableCell1" Weight="0.08173215607071915" Multiline="true" TextAlignment="TopRight" Dpi="254">
                   <ExpressionBindings>
-                    <Item1 Ref="19" EventName="BeforePrint" PropertyName="Text" Expression="[Query].[Client]" />
+                    <Item1 Ref="12" EventName="BeforePrint" PropertyName="Text" Expression="[Query].[Client]" />
                   </ExpressionBindings>
                 </Item1>
-                <Item2 Ref="20" ControlType="XRTableCell" Name="tableCell2" Weight="0.7240920750289505" Multiline="true" Dpi="254">
+                <Item2 Ref="13" ControlType="XRTableCell" Name="tableCell2" Weight="0.7240920750289505" Multiline="true" Dpi="254">
                   <ExpressionBindings>
-                    <Item1 Ref="21" EventName="BeforePrint" PropertyName="Text" Expression="[Query].[Nom]" />
+                    <Item1 Ref="14" EventName="BeforePrint" PropertyName="Text" Expression="[Query].[Nom]" />
                   </ExpressionBindings>
                 </Item2>
-                <Item3 Ref="22" ControlType="XRTableCell" Name="tableCell3" Weight="0.11224805805695694" Multiline="true" Dpi="254">
+                <Item3 Ref="15" ControlType="XRTableCell" Name="tableCell3" Weight="0.11224805805695694" Multiline="true" Dpi="254">
                   <ExpressionBindings>
-                    <Item1 Ref="23" EventName="BeforePrint" PropertyName="Text" Expression="[Query].[TipusABCClient]" />
+                    <Item1 Ref="16" EventName="BeforePrint" PropertyName="Text" Expression="[Query].[TipusABCClient]" />
                   </ExpressionBindings>
                 </Item3>
               </Cells>
@@ -56,14 +42,44 @@
         </Item1>
       </Controls>
     </Item3>
+    <Item4 Ref="17" ControlType="GroupHeaderBand" Name="GroupHeader1" PageBreak="BeforeBand" HeightF="238.125" Dpi="254">
+      <GroupFields>
+        <Item1 Ref="18" FieldName="TipusABCClient" />
+      </GroupFields>
+      <Controls>
+        <Item1 Ref="19" ControlType="XRLabel" Name="label2" Multiline="true" Text="label2" SizeF="351.8958,135.14917" LocationFloat="361.02075,25.000008" Dpi="254" Font="Arial, 30.75pt, style=Bold, Underline" Padding="5,5,0,0,254">
+          <ExpressionBindings>
+            <Item1 Ref="20" EventName="BeforePrint" PropertyName="Text" Expression="[TipusABCClient]" />
+          </ExpressionBindings>
+          <StylePriority Ref="21" UseFont="false" />
+        </Item1>
+        <Item2 Ref="22" ControlType="XRTable" Name="table2" SizeF="1592,63.5" LocationFloat="0,174.625" Dpi="254" Padding="0,0,0,0,254">
+          <Rows>
+            <Item1 Ref="23" ControlType="XRTableRow" Name="tableRow2" Weight="1" Dpi="254">
+              <Cells>
+                <Item1 Ref="24" ControlType="XRTableCell" Name="tableCell4" Weight="0.2670774603608864" Multiline="true" Text="# Client" TextAlignment="TopRight" Dpi="254">
+                  <StylePriority Ref="25" UseTextAlignment="false" />
+                </Item1>
+                <Item2 Ref="26" ControlType="XRTableCell" Name="tableCell5" Weight="2.3661277042561446" Multiline="true" Text="Nom Client" Dpi="254" />
+                <Item3 Ref="27" ControlType="XRTableCell" Name="tableCell6" Weight="0.3667948353829695" Multiline="true" Text="Tipus ABC" Dpi="254" />
+              </Cells>
+            </Item1>
+          </Rows>
+          <StylePriority Ref="28" UsePadding="false" />
+        </Item2>
+        <Item3 Ref="29" ControlType="XRLabel" Name="label1" Multiline="true" Text="Tipus:" SizeF="336.02075,135.14914" LocationFloat="25.000008,25.000008" Dpi="254" Font="Arial, 30.75pt, style=Bold" Padding="5,5,0,0,254">
+          <StylePriority Ref="30" UseFont="false" />
+        </Item3>
+      </Controls>
+    </Item4>
   </Bands>
   <StyleSheet>
-    <Item1 Ref="24" Name="Style1" BorderStyle="Inset" Padding="0,0,0,0,254" BackColor="255,216,216,216" StringFormat="Near;Near;0;None;Character;GenericDefault" />
+    <Item1 Ref="31" Name="Style1" BorderStyle="Inset" Padding="0,0,0,0,254" BackColor="255,216,216,216" StringFormat="Near;Near;0;None;Character;GenericDefault" />
   </StyleSheet>
   <ComponentStorage>
-    <Item1 Ref="25" ObjectType="DevExpress.DataAccess.Sql.SqlDataSource,DevExpress.DataAccess.v23.1" Name="sqlDataSource1" Base64="PFNxbERhdGFTb3VyY2UgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxDb25uZWN0aW9uIE5hbWU9IkNvbm5lY3Rpb25FUlAiIENvbm5lY3Rpb25TdHJpbmc9Inhwb3Byb3ZpZGVyPU1TU3FsU2VydmVyO3NlcnZlcj0xOTIuMTY4LjAuNDtkYXRhYmFzZT1QdWlnbmF1RVJQO3RydXN0c2VydmVyY2VydGlmaWNhdGU9VHJ1ZTt1c2VyPXNhIiAvPjxRdWVyeSBUeXBlPSJTZWxlY3RRdWVyeSIgTmFtZT0iX2JvcnJhciI+PFRhYmxlcz48VGFibGUgTmFtZT0iQ29uZl9QZWRpZG9zX0NsaSIgWD0iMzAiIFk9IjMwIiBXaWR0aD0iMTI1IiBIZWlnaHQ9IjIwNCIgLz48VGFibGUgTmFtZT0iUGVkaWRvc19DbGlfQ2FiZWNlcmEiIFg9IjE4NSIgWT0iMzAiIFdpZHRoPSIxMjUiIEhlaWdodD0iMTIyNCIgLz48UmVsYXRpb24gVHlwZT0iSW5uZXIiIFBhcmVudD0iQ29uZl9QZWRpZG9zX0NsaSIgTmVzdGVkPSJQZWRpZG9zX0NsaV9DYWJlY2VyYSI+PEtleUNvbHVtbiBQYXJlbnQ9IklkUGVkaWRvIiBOZXN0ZWQ9IklkUGVkaWRvIiAvPjwvUmVsYXRpb24+PC9UYWJsZXM+PENvbHVtbnM+PENvbHVtbiBUYWJsZT0iUGVkaWRvc19DbGlfQ2FiZWNlcmEiIE5hbWU9IklkUGVkaWRvIiAvPjwvQ29sdW1ucz48L1F1ZXJ5PjxSZXN1bHRTY2hlbWE+PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9Il9ib3JyYXIiPjxGaWVsZCBOYW1lPSJJZFBlZGlkbyIgVHlwZT0iSW50MzIiIC8+PC9WaWV3PjwvRGF0YVNldD48L1Jlc3VsdFNjaGVtYT48Q29ubmVjdGlvbk9wdGlvbnMgQ2xvc2VDb25uZWN0aW9uPSJ0cnVlIiAvPjwvU3FsRGF0YVNvdXJjZT4=" />
+    <Item1 Ref="32" ObjectType="DevExpress.DataAccess.Sql.SqlDataSource,DevExpress.DataAccess.v23.1" Name="sqlDataSource1" Base64="PFNxbERhdGFTb3VyY2UgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxDb25uZWN0aW9uIE5hbWU9IkNvbm5lY3Rpb25FUlAiIENvbm5lY3Rpb25TdHJpbmc9Inhwb3Byb3ZpZGVyPU1TU3FsU2VydmVyO3NlcnZlcj0xOTIuMTY4LjAuNDtkYXRhYmFzZT1QdWlnbmF1RVJQO3RydXN0c2VydmVyY2VydGlmaWNhdGU9VHJ1ZTt1c2VyPXNhIiAvPjxRdWVyeSBUeXBlPSJTZWxlY3RRdWVyeSIgTmFtZT0iX2JvcnJhciI+PFRhYmxlcz48VGFibGUgTmFtZT0iQ29uZl9QZWRpZG9zX0NsaSIgWD0iMzAiIFk9IjMwIiBXaWR0aD0iMTI1IiBIZWlnaHQ9IjIwNCIgLz48VGFibGUgTmFtZT0iUGVkaWRvc19DbGlfQ2FiZWNlcmEiIFg9IjE4NSIgWT0iMzAiIFdpZHRoPSIxMjUiIEhlaWdodD0iMTIyNCIgLz48UmVsYXRpb24gVHlwZT0iSW5uZXIiIFBhcmVudD0iQ29uZl9QZWRpZG9zX0NsaSIgTmVzdGVkPSJQZWRpZG9zX0NsaV9DYWJlY2VyYSI+PEtleUNvbHVtbiBQYXJlbnQ9IklkUGVkaWRvIiBOZXN0ZWQ9IklkUGVkaWRvIiAvPjwvUmVsYXRpb24+PC9UYWJsZXM+PENvbHVtbnM+PENvbHVtbiBUYWJsZT0iUGVkaWRvc19DbGlfQ2FiZWNlcmEiIE5hbWU9IklkUGVkaWRvIiAvPjwvQ29sdW1ucz48L1F1ZXJ5PjxSZXN1bHRTY2hlbWE+PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9Il9ib3JyYXIiPjxGaWVsZCBOYW1lPSJJZFBlZGlkbyIgVHlwZT0iSW50MzIiIC8+PC9WaWV3PjwvRGF0YVNldD48L1Jlc3VsdFNjaGVtYT48Q29ubmVjdGlvbk9wdGlvbnMgQ2xvc2VDb25uZWN0aW9uPSJ0cnVlIiAvPjwvU3FsRGF0YVNvdXJjZT4=" />
   </ComponentStorage>
   <ObjectStorage>
-    <Item1 Ref="0" ObjectType="DevExpress.DataAccess.Sql.SqlDataSource,DevExpress.DataAccess.v23.1" Name="DataConnectionString" Base64="PFNxbERhdGFTb3VyY2UgTmFtZT0iRGF0YUNvbm5lY3Rpb25TdHJpbmciPjxDb25uZWN0aW9uIE5hbWU9IkNvbm5lY3Rpb24iIENvbm5lY3Rpb25TdHJpbmc9Inhwb3Byb3ZpZGVyPU1TU3FsU2VydmVyO3NlcnZlcj0xOTIuMTY4LjAuNDtkYXRhYmFzZT1QdWlnbmF1O3RydXN0c2VydmVyY2VydGlmaWNhdGU9VHJ1ZTt1c2VyPXNhIiAvPjxRdWVyeSBUeXBlPSJDdXN0b21TcWxRdWVyeSIgTmFtZT0iUXVlcnkiPjxTcWw+c2VsZWN0IENsaWVudCwgTm9tLCBUaXB1c0FCQ0NsaWVudCBmcm9tIGNsaWVudHMgd2hlcmUgVGlwdXNBQkNDbGllbnQgaXMgbm90IG51bGwgYW5kIFRpcHVzQUJDQ2xpZW50ICE9ICcnIGFuZCBEYXRhQmFpeGEgaXMgbnVsbA0Kb3JkZXIgYnkgVGlwdXNBQkNDbGllbnQ8L1NxbD48L1F1ZXJ5PjxSZXN1bHRTY2hlbWE+PERhdGFTZXQgTmFtZT0iRGF0YUNvbm5lY3Rpb25TdHJpbmciPjxWaWV3IE5hbWU9IlF1ZXJ5Ij48RmllbGQgTmFtZT0iQ2xpZW50IiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iTm9tIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlRpcHVzQUJDQ2xpZW50IiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD48L1Jlc3VsdFNjaGVtYT48Q29ubmVjdGlvbk9wdGlvbnMgQ2xvc2VDb25uZWN0aW9uPSJ0cnVlIiAvPjwvU3FsRGF0YVNvdXJjZT4=" />
+    <Item1 Ref="0" ObjectType="DevExpress.DataAccess.Sql.SqlDataSource,DevExpress.DataAccess.v23.1" Name="DataConnectionString" Base64="PFNxbERhdGFTb3VyY2UgTmFtZT0iRGF0YUNvbm5lY3Rpb25TdHJpbmciPjxDb25uZWN0aW9uIE5hbWU9IkNvbm5lY3Rpb24iIENvbm5lY3Rpb25TdHJpbmc9ImRhdGEgc291cmNlPTE5Mi4xNjguMC40O2luaXRpYWwgY2F0YWxvZz1QdWlnbmF1O3RydXN0IHNlcnZlciBjZXJ0aWZpY2F0ZT1UcnVlO2FwcGxpY2F0aW9uIG5hbWU9QWhvcmFFUlA1IiAvPjxRdWVyeSBUeXBlPSJDdXN0b21TcWxRdWVyeSIgTmFtZT0iUXVlcnkiPjxTcWw+c2VsZWN0IENsaWVudCwgTm9tLCBUaXB1c0FCQ0NsaWVudCBmcm9tIGNsaWVudHMgd2hlcmUgVGlwdXNBQkNDbGllbnQgaXMgbm90IG51bGwgYW5kIFRpcHVzQUJDQ2xpZW50ICE9ICcnIGFuZCBEYXRhQmFpeGEgaXMgbnVsbA0Kb3JkZXIgYnkgVGlwdXNBQkNDbGllbnQ8L1NxbD48L1F1ZXJ5PjxSZXN1bHRTY2hlbWE+PERhdGFTZXQgTmFtZT0iRGF0YUNvbm5lY3Rpb25TdHJpbmciPjxWaWV3IE5hbWU9IlF1ZXJ5Ij48RmllbGQgTmFtZT0iQ2xpZW50IiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iTm9tIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlRpcHVzQUJDQ2xpZW50IiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD48L1Jlc3VsdFNjaGVtYT48Q29ubmVjdGlvbk9wdGlvbnMgQ2xvc2VDb25uZWN0aW9uPSJ0cnVlIiAvPjwvU3FsRGF0YVNvdXJjZT4=" />
   </ObjectStorage>
 </XtraReportsLayoutSerializer>
