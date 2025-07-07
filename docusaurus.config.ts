@@ -1,7 +1,8 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-const path = require('path');
+import path from 'path';
+import { remarkKroki } from 'remark-kroki';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -40,6 +41,13 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          remarkPlugins: [
+            [remarkKroki, {
+              server: 'https://kroki.io',
+              alias: ['plantuml', 'graphviz', 'mermaid'], // alias para usar ```plantuml
+              target: 'mdx3'
+            }]
+          ]
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
      //     editUrl:
@@ -90,15 +98,9 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'puignauSidebar',
+          sidebarId: 'clientsSidebar',
           position: 'left',
-          label: 'Puignau',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'puignaubcnSidebar',
-          position: 'left',
-          label: 'PuignauBCN',
+          label: 'Clients',
         },
         {
           type: 'docSidebar',
@@ -106,21 +108,9 @@ const config: Config = {
           position: 'left',
           label: 'Ahora',
         },
-        {
-          type: 'docSidebar',
-          sidebarId: 'pesvalSidebar',
-          position: 'left',
-          label: 'PesVal',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'naufrescSidebar',
-          position: 'left',
-          label: 'Naufresc',
-        },
         //{to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/estmi/estmi.github.io',
+          href: 'https://github.com/estmi/nowtech-docs',
           label: 'GitHub',
           position: 'right',
         },
