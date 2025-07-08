@@ -65,7 +65,7 @@ const SqlViewer: React.FC<SqlViewerProps> = ({ file, title }) => {
   className={styles.vscodeButton}
   title="Abrir en Visual Studio Code"
 >
-<img src = "/nowtech-docs/icons/vscode.svg" height={20} width={20}/>
+<img src = "/nowtech-docs/img/vscode.svg" height={20} width={20}/>
 </a>
 
         </div>

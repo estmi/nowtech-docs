@@ -9,4 +9,4 @@ orden,IdPrePedido,IdPrePedidoLinea,IdArticulo,DescripArticle,QuantVenta,cantidad
  from VPers_PrePedido_Lineas_Grid [Pers_PrePedido_Lineas]
 ```
 
-<SqlViewer file="puignau\CRM\view_televendes\VPers_PrePedido_Lineas_Grid.sql"/>
+<SqlViewer file="clients/puignau\CRM\view_televendes\VPers_PrePedido_Lineas_Grid.sql"/>

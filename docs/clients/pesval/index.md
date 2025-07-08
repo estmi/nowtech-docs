@@ -1,1 +1,1 @@
-# Naumarina \[Pesval\]
+# Naumarina (Pesval)

@@ -1,1 +1,1 @@
-# Naufresc \[Puignau Botigues\]
+# Naufresc (Puignau Botigues)

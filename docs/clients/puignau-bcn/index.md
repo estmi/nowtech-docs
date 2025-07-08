@@ -1,1 +1,1 @@
-# 00014-01 - Puignau Barcelona \[PUBA\]
+# 00014-01 - Puignau Barcelona (PUBA)
