@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"nowtech-docs.code-workspace": true,
+			".docusaurus/": true,
+			".gitignore": true,
+			"build/": true,
+			"package.json": true,
+			"package-lock.json": true,
+			"yarn.lock": true,
+			"plugins/": true,
+			"src/": true,
+			"node_modules/": true,
+			".nojekyll": true
+		}
+	}
+}
