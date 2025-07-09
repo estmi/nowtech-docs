@@ -359,6 +359,7 @@ BEGIN
 								  WHEN @TipusUnitat = 'KGS' THEN 'KG'
 								  WHEN @TipusUnitat = 'FDO' THEN 'Far.'
 								  WHEN @TipusUnitat = 'PEC' THEN 'Pec '
+								  WHEN @TipusUnitat = 'UTS' THEN 'Un'
 								  ELSE @TipusUnitat  -- Si no coincide con ningún valor, se mantiene igual
 							   END;
 				if @ArticleBundle is null
@@ -394,7 +395,7 @@ BEGIN
 								@Asignat
 								,@Preua as Precio --HO EMPLENA EL TRIGGER SEGONS FUNDAMEPRECIO
 								,ltrim(rtrim(@TipusUnitat)), @TipusObs as TipoObservacions--HO EMPLENA EL TRIGGER SEGONS CLIENT
-								, Concat(@ObsComanda,' ', (select top 1 Observaciones from fPers_ObtenerObservacionClienteArticulo(coalesce(@articlebundle,@Article),@Client)) )
+								, Concat(@ObsComanda,' ', (select top 1 Observaciones from fPers_ObtenerObservacionClienteArticulo(coalesce(@articlebundle,@Article),@Client)), @Comentaris )
 								,@IdReservaDetall
 								, @OrigenTabla
 								,@TipusReserva, 0 as linnueva,
