@@ -6,28 +6,24 @@ import styles from './SqlViewer.module.css';
 interface SqlViewerProps {
   file: string;
   title?: string;
+  baseUrl?: string;
 }
 
-const SqlViewer: React.FC<SqlViewerProps> = ({ file, title }) => {
+const SqlViewer: React.FC<SqlViewerProps> = ({ file, title,baseUrl }) => {
   const [sql, setSql] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [expanded, setExpanded] = useState(false);
   const [copied, setCopied] = useState(false);
-
+  if (baseUrl === null || baseUrl == undefined ) baseUrl = 'clients/';
+  if (baseUrl === '/') baseUrl = '';
   const filename = file.split('/').pop().split('\\').pop().split('.')[0] || file;
 
   const loadSql = () => {
     setError(null);
-    fetch(`/nowtech-docs/clients/${file}`)
+    fetch(`/nowtech-docs/${baseUrl}${file}`)
       .then((res) => {
         if (!res.ok) 
-        {
-          return fetch(`/nowtech-docs/${file}`)
-          .then((res) => {
-            if (!res.ok) throw new Error(`No se pudo cargar el archivo: ${file}`);
-            return res.text();
-          })
-        }
+          throw new Error(`No se pudo cargar el archivo: ${file}`);
         return res.text();
       })
       .then(setSql)
@@ -68,7 +64,7 @@ const SqlViewer: React.FC<SqlViewerProps> = ({ file, title }) => {
           )}
           <button onClick={loadSql}>Rellegir</button>
           <a
-  href={`vscode://file/D:/nowtech-docs/static/${file}`}
+  href={`vscode://file/D:/nowtech-docs/static/${baseUrl}${file}`}
   className={styles.vscodeButton}
   title="Abrir en Visual Studio Code"
 >
