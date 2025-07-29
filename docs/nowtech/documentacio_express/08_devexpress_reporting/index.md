@@ -2,6 +2,14 @@
 
 ## Starting
 
+### Iniciar Eina
+
+Per iniciar l'eina haurem de iniciar sessio amb l'ERP de `Nowtech` que te llicencia aplicada o sino en una BD local amb llicencia `Evaluacion` que tambe ens permet obrir el dissenyador.
+
+Un cop dins l'ERP anirem al `Dashboard`, 3 punts i buscarem `Diseñador de informes`:
+
+![arrancar_IDE]
+
 ### Crear Report
 
 Per crear un nou report/informe usarem l'assistent de creacio que trobarem a la barra superior a `File` -> `New via Wizard...`
@@ -126,6 +134,26 @@ Tambe com que l'informe pot ser molt llarg, li posarem en el `Bottom Margin` un 
 
 ![resultat]
 
+## Advanced
+
+## Parametria del report
+
+Entrarem al `Field List` i buscarem l'opcio de `Parameters` on li farem clic dret i `Add Parameter` i despres configurarem el parametre:
+
+![alt text](image.png)
+
+Podem tambe configurar una llista de possibles valors per el parametre.
+
+## Parametria de les querys
+
+Per traspassar els parametres del report a la query, entrarem al Query Manager i a la part inferior apretarem el buto `Edit Parameters...`, li posarem un Nom i li posarem que `Expression = True` i al `Value` li posarem el parametre del Report posant un interrogant (`?`) a davant, podem triar-ho del desplegable.
+
+![alt text](image-1.png)
+
+Un cop definit el parametre, entrarem a la query i afegirem una condicio where a la SQL:
+
+![alt text](image-2.png)
+
 [data_source_configure_connection_string]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/data_source_configure_connection_string.png
 [data_source_connection_editor]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/data_source_connection_editor.png
 [data_source_connection_editor_custom_connection]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/data_source_connection_editor_custom_connection.png
@@ -148,3 +176,5 @@ Tambe com que l'informe pot ser molt llarg, li posarem en el `Bottom Margin` un 
 [resultat_agrupacions_capcalera]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/resultat_agrupacions_capcalera.png
 
 [grouping_poage_break]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/grouping_poage_break.png
+
+[arrancar_IDE]: /nowtech-docs/nowtech/documentacio_express/08_devexpress_reporting/arrancar_IDE.png

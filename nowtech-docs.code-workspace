@@ -6,7 +6,7 @@
 	],
 	"settings": {
 		"files.exclude": {
-			"nowtech-docs.code-workspace": true,
+			"nowtech-docs.code-workspace": false,
 			".docusaurus/": true,
 			".gitignore": true,
 			"build/": true,
@@ -14,7 +14,7 @@
 			"package-lock.json": true,
 			"yarn.lock": true,
 			"plugins/": true,
-			"src/": true,
+			"src/": false,
 			"node_modules/": true,
 			"*/.nojekyll": true
 		}

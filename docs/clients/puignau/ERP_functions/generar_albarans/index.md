@@ -18,7 +18,7 @@ Un cop filtrat podem imprimir, generar i actualitzar els albarans.
 
 Quan generem els albarans, s'executa el seguent metode:
 
-<SqlViewer file="clients/puignau/ERP_functions/generar_albarans/pPers_Generar_Albaranes_Ruta.sql"/>
+<SqlViewer file="puignau/ERP_functions/generar_albarans/pPers_Generar_Albaranes_Ruta.sql"/>
 
 [opcio_menu_generar_albarans]: /nowtech-docs/clients/puignau/ERP_functions/generar_albarans/opcio_menu_generar_albarans.png
 [pantalla_generar_albarans]: /nowtech-docs/clients/puignau/ERP_functions/generar_albarans/pantalla_generar_albarans.png

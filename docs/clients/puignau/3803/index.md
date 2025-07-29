@@ -47,27 +47,27 @@ Internament, s'executen 5 `Stored Procedures` més els quals cadascú s'encarreg
 
 ### pPers_DuplicarClient
 
-<SqlViewer title="pPers_DuplicarClient" file="clients/puignau/3803/pPers_DuplicarClient.sql"/>
+<SqlViewer title="pPers_DuplicarClient" file="puignau/3803/pPers_DuplicarClient.sql"/>
 
 ### pPers_DuplicarClient_pClientes_DatosI
 
-<SqlViewer title="pPers_DuplicarClient_pClientes_DatosI" file="clients/puignau/3803/pPers_DuplicarClient_pClientes_DatosI.sql"/>
+<SqlViewer title="pPers_DuplicarClient_pClientes_DatosI" file="puignau/3803/pPers_DuplicarClient_pClientes_DatosI.sql"/>
 
 ### pPers_DuplicarClient_InsertarDomiciliaciones
 
-<SqlViewer title="pPers_DuplicarClient_InsertarDomiciliaciones" file="clients/puignau/3803/pPers_DuplicarClient_InsertarDomiciliaciones.sql"/>
+<SqlViewer title="pPers_DuplicarClient_InsertarDomiciliaciones" file="puignau/3803/pPers_DuplicarClient_InsertarDomiciliaciones.sql"/>
 
 ### pPers_DuplicarClient_PClientes_Datos_Comerciales_U
 
-<SqlViewer title="pPers_DuplicarClient_PClientes_Datos_Comerciales_U" file="clients/puignau/3803/pPers_DuplicarClient_PClientes_Datos_Comerciales_U.sql"/>
+<SqlViewer title="pPers_DuplicarClient_PClientes_Datos_Comerciales_U" file="puignau/3803/pPers_DuplicarClient_PClientes_Datos_Comerciales_U.sql"/>
 
 ### pPers_DuplicarClient_PClientes_Datos_Economicos_U
 
-<SqlViewer title="pPers_DuplicarClient_PClientes_Datos_Economicos_U" file="clients/puignau/3803/pPers_DuplicarClient_PClientes_Datos_Economicos_U.sql"/>
+<SqlViewer title="pPers_DuplicarClient_PClientes_Datos_Economicos_U" file="puignau/3803/pPers_DuplicarClient_PClientes_Datos_Economicos_U.sql"/>
 
 ### pPers_DuplicarClient_CopiaConfigurables
 
-<SqlViewer title="pPers_DuplicarClient_CopiaConfigurables" file="clients/puignau/3803/pPers_DuplicarClient_CopiaConfigurables.sql"/>
+<SqlViewer title="pPers_DuplicarClient_CopiaConfigurables" file="puignau/3803/pPers_DuplicarClient_CopiaConfigurables.sql"/>
 
 [`pPers_DuplicarClient_pClientes_DatosI`]: #ppers_duplicarclient_pclientes_datosi
 [`pPers_DuplicarClient_InsertarDomiciliaciones`]: #ppers_duplicarclient_insertardomiciliaciones

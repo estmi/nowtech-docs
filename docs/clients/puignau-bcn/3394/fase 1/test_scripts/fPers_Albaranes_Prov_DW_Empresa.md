@@ -6,7 +6,7 @@ toc_max_heading_level: 2
 
 ## Test 1
 
-<SqlViewer file="clients\puignau-bcn\3394\test_scripts\fPers_Albaranes_Prov_DW_Empresa.sql"/>
+<SqlViewer file="puignau-bcn\3394\test_scripts\fPers_Albaranes_Prov_DW_Empresa.sql"/>
 
 ### Test Result
 
