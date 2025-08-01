@@ -39,8 +39,9 @@
 						output inserted.id into @OutputTbl
 						select Data,Article, Nom, NomFrances, NomCastella, TipusUnitat, @Asignat, PreuCost, PreuVenda1, PreuVenda2, Comentaris, PreuCostTotal, IncT2, PreuVendaT2, CasellaCompra, avis, AmbAlbara, Visible, UltimPreuVenda1, VeureComentarisMBCN 
 						from puignau..ArticleArriva where id = @Id
+						select @id=id from @OutputTbl
 						insert into [PuignauBCN].[dbo].[ArticleArrivaReserves] (IdLlotja,Data,Persona,Article,DataLlotja,UnitatsDemanades,UnitatsAssignades,Comentaris,Client, Usuari,ArticlePare,NomArticlePare)
-						select (select id from @OutputTbl), GETDATE(), @IdUsuari, @Article, @Data, @Demanat,@Asignat, concat(@ObsComanda,@Comentaris),@Client,@usuari,@ArticleBundle,@DescripArticleBundle
+						select @Id, GETDATE(), @IdUsuari, @Article, @Data, @Demanat,@Asignat, concat(@ObsComanda,@Comentaris),@Client,@usuari,@ArticleBundle,@DescripArticleBundle
 						SET @IdReservaDetall = (SELECT TOP 1 Id FROM [PuignauBCN].[dbo].[ArticleArrivaReserves] WHERE IdLlotja = @Id AND Article = @Article AND Client = @Client ORDER BY ID  )
 					end
 					else
