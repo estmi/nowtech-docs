@@ -14,7 +14,7 @@
 			"package-lock.json": true,
 			"yarn.lock": true,
 			"plugins/": true,
-			"src/": false,
+			"src/": true,
 			"node_modules/": true,
 			"*/.nojekyll": true
 		}
