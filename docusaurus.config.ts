@@ -47,11 +47,11 @@ const config: Config = {
               alias: ['plantuml', 'graphviz', 'mermaid'], // alias para usar ```plantuml
               target: 'mdx3'
             }]
-          ]
+          ],
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-     //     editUrl:
-     //       'https://github.com/estmi/MarkdownServer/tree/master/',
+          editUrl:
+            'https://github.com/estmi/nowtech-docs/tree/master/',
         },
         blog: false /*{
           showReadingTime: true,
