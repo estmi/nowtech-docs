@@ -8,7 +8,8 @@ ALTER PROCEDURE [dbo].[pPers_Gestio_Articles_Reserva_IU]
     @ArticleBundle    VARCHAR(50) = null,
     @Article2    VARCHAR(50) = null,
     @Demanat          NUMERIC(18,2) = null,
-    @Comentaris       VARCHAR(150) = null
+    @Comentaris       VARCHAR(150) = null,
+	@FlexyGO bit= 1
 )
 AS
 BEGIN
@@ -267,7 +268,10 @@ BEGIN
 				end
 				if @update = 1
 				begin 				
-					if (@IdEmpresa = 2)
+					if (@IdEmpresa = 2 and @IdEmpresaLlotja = 0)
+						select 'swal.fire({theme:"borderless", text:"No es pot modificar una reserva de una altra empresa, si us plau elimineu la reserva i torneu-la a generar", icon:"error"});'
+						return -1
+					if (@IdEmpresa = 2 and @IdEmpresaLlotja = 2)
 					begin
 						delete [PuignauBCN].[dbo].[ArticleArrivaReserves]  
 						where IdLlotja = @Id and article = @Article and Client = @Client						
@@ -286,18 +290,55 @@ BEGIN
 					end
 					else if (@IdEmpresa = 2 and @IdEmpresaLlotja = 0)
 					begin
+					begin tran
+					begin try
+						DECLARE @OutputTbl TABLE (ID INT)
 						insert into [Puignau].[dbo].[ArticleArrivaReserves] (IdLlotja,Data,Persona,Article,DataLlotja,UnitatsDemanades,UnitatsAssignades,Comentaris,Client, Usuari,ArticlePare,NomArticlePare)
 						select @Id, GETDATE(), @IdUsuari, @Article, @Data, @Demanat,@Asignat, concat(@ObsComanda,@Comentaris),6507,@usuari,@ArticleBundle,@DescripArticleBundle
-						SET @IdReservaDetall = (SELECT TOP 1 Id FROM [Puignau].[dbo].[ArticleArrivaReserves] WHERE IdLlotja = @Id AND Article = @Article AND Client = 6507 ORDER BY ID  )
-						DECLARE @OutputTbl TABLE (ID INT)
-						insert into PuignauBCN..ArticleArriva(Data,Article, Nom, NomFrances, NomCastella, TipusUnitat, Unitats, PreuCost, PreuVenda1, PreuVenda2, Comentaris, PreuCostTotal, IncT2, PreuVendaT2, CasellaCompra, avis, AmbAlbara, Visible, UltimPreuVenda1, VeureComentarisMBCN)
+
+						INSERT INTO [dbo].[Pers_PrePedido]
+						([IdCliente]
+						,[IdEmpresa]
+						,[Fecha_Pedido]
+						,[Fecha_Preparacion]
+						,[Fecha_Entrega]
+						,[IdEmpleadoPedido]
+						,[Observacion]
+						,[IdEstado]
+						,[IdPedido]
+						,[Modo]
+						,[P_AlbaranSeparado]
+						,[Visible])
+						output inserted.IdPrePedido into @OutputTbl
+						SELECT 6507, 0, Fecha_Pedido, Fecha_Preparacion, Fecha_Entrega, IdEmpleadoPedido, Observacion, 1, null, Modo, 0, 0 from Pers_PrePedido where IdPrePedido = @IdPrePedido
+						Select @IdReservaDetall = id from @OutputTbl
+						delete from @OutputTbl
+						exec [pPers_Gestio_Articles_Reserva_IU]
+						@idprepedido = @IdReservaDetall, --IdPrepedido
+						@demanat = @demanat,
+						@articlebundle = @articlebundle,
+						@comentaris = @comentaris,
+						@numorigen = @numorigen,
+						@id = @id,
+						@idempresallotja = @idempresallotja,
+						@FlexyGO = 0
+						exec pPers_PrePedido_Inserta_Pedido @IdReservaDetall, 0, 0 --IdPrepedido
+						
+						insert into PuignauBCN..ArticleArriva(Data,Article, Nom, NomFrances, NomCastella, TipusUnitat, Unitats, PreuCost, PreuVenda1, PreuVenda2, Comentaris, PreuCostTotal, IncT2, PreuVendaT2, CasellaCompra, avis, AmbAlbara, Visible, UltimPreuVenda1, VeureComentarisMBCN, IdLlotjaGirona, IDComandaRel)
 						output inserted.id into @OutputTbl
-						select Data,Article, Nom, NomFrances, NomCastella, TipusUnitat, @Asignat, PreuCost, PreuVenda1, PreuVenda2, Comentaris, PreuCostTotal, IncT2, PreuVendaT2, CasellaCompra, avis, AmbAlbara, Visible, UltimPreuVenda1, VeureComentarisMBCN 
+						select Data,Article, Nom, NomFrances, NomCastella, TipusUnitat, @Asignat, PreuCost, PreuVenda1, PreuVenda2, Comentaris, PreuCostTotal, IncT2, PreuVendaT2, CasellaCompra, avis, AmbAlbara, Visible, UltimPreuVenda1, VeureComentarisMBCN, id, @IdReservaDetall
 						from puignau..ArticleArriva where id = @Id
 						select @id=id from @OutputTbl
+						delete from @OutputTbl
 						insert into [PuignauBCN].[dbo].[ArticleArrivaReserves] (IdLlotja,Data,Persona,Article,DataLlotja,UnitatsDemanades,UnitatsAssignades,Comentaris,Client, Usuari,ArticlePare,NomArticlePare)
+						output inserted.id into @OutputTbl
 						select @Id, GETDATE(), @IdUsuari, @Article, @Data, @Demanat,@Asignat, concat(@ObsComanda,@Comentaris),@Client,@usuari,@ArticleBundle,@DescripArticleBundle
-						SET @IdReservaDetall = (SELECT TOP 1 Id FROM [PuignauBCN].[dbo].[ArticleArrivaReserves] WHERE IdLlotja = @Id AND Article = @Article AND Client = @Client ORDER BY ID  )
+						select @IdReservaDetall=id from @OutputTbl
+						commit tran
+						end try
+						begin catch
+						rollback tran
+						end catch
 					end
 					else
 					begin
@@ -427,16 +468,6 @@ BEGIN
 		end
 		else
 		begin
-			if (@IdEmpresa = 2)
-			begin
-				delete [PuignauBCN].[dbo].[ArticleLlotjaReserves] 
-				where IdLlotja = @Id and article = @Article and Client = @Client				
-			end
-			else
-			begin
-				delete [Puignau].[dbo].[ArticleLlotjaReserves] 
-				where IdLlotja = @Id and article = @Article and Client = @Client
-			end
 			delete Pers_PrePedido_Lineas where IdPrePedido = @IdPrePedido and IdPrePedidoLinea = @idlinea
 		end
 
@@ -447,7 +478,13 @@ BEGIN
 		END
 		ELSE
 		BEGIN
-			select 'refreshEditGridP(); refreshButtonera();' as JSCode
+		If @FlexyGO = 1
+		begin
+				if @IdEmpresaLlotja <> @IdEmpresa 
+					select concat('refreshEditGridP(); refreshButtonera();',
+						'swal.fire({theme:"borderless", title: "Reserva Gestionada correctament", icon:"success", allowOutsideClick:true, allowEscapeKey:true,showConfirmButton:true});') as JSCode
+				else select 'refreshEditGridP(); refreshButtonera();' as JSCode
+		end
 		END
 	end
 	else
