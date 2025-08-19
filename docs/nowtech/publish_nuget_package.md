@@ -23,5 +23,5 @@ nuget.exe push NowtechDistribucio.0.0.0.1.nupkg aaaaaa -Source dev-nowtech
 Podem guardar un token per no haver de enrecordar-nos cada cop, per fer aixo utilitzarem la seguent comanda:
 
 ```batch
-nuget setApiKey xxxxxxx -Source dev-nowtech
+nuget setApiKey xxxxxxxx -Source dev-nowtech
 ```
