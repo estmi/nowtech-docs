@@ -6,6 +6,31 @@ hide_table_of_contents: true
 ```kroki type=nwdiag
 nwdiag {
 inet1 [shape = cloud];
+inet2 [shape = cloud];
+  inet2 -- routerMovistar;
+  network Movistar {
+    address = "192.168.1.0/24"
+
+    Firewall;
+    routerMovistar;
+  }
+  network Goufone {
+    address = "192.168.0.0/24"
+
+    Firewall;
+    routerGoufone;
+  }
+  inet1 -- routerGoufone;
+  network Interna {
+    address = "192.168.0.0/24";
+    Firewall;
+  }
+}
+```
+
+```kroki type=nwdiag
+nwdiag {
+inet1 [shape = cloud];
 inet2 [shape = square];
   inet2 -- routerMovistar;
   inet1 -- routerGoufone;

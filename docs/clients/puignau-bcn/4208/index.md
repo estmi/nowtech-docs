@@ -26,10 +26,10 @@ Afegir parametre `IdEmpresaLlotja`. Ocultar i posar default `{{IdEmpresaLlotja}}
 
 ![param_definition_IdEmpresaLlotja]
 
-[param_definition_IdEmpresaLlotja]: /nowtech-docs/clients/puignau-bcn/4208/param_definition_IdEmpresaLlotja.png
-
 ## BD PuignauBCN Afegir camp IdLlotjaGirona i IdComandaRel
 
 Aquests dos camps ens permetran saber si hi ha una comanda a eliminar i si prove d'una llotja relacionada.
 
 ![alt text](image.png)
+
+[param_definition_IdEmpresaLlotja]: /nowtech-docs/clients/puignau-bcn/4208/param_definition_IdEmpresaLlotja.png

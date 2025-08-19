@@ -1,8 +1,10 @@
 # FlexyGOs instalats
 
-[http://localhost/PuignauCRMTest](http://localhost/PuignauCRMTest)
+[Puignau CRM PRE Local](http://localhost/PuignauCRMTest)
 
-[http://192.168.0.4:82/PuignauCRM](http://192.168.0.4:82/PuignauCRM)
+[Puignau CRM PRO](http://192.168.0.4:82/PuignauCRM)
+
+[Flexy Alta Clients](https://connexio.peixospuignau.net:8082/Puignau)
 
 ## Decrypt ConnectionStrings
 
