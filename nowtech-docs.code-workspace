@@ -16,6 +16,7 @@
 			"plugins/": true,
 			"src/": true,
 			"node_modules/": true,
+			".github/": true,
 			"*/.nojekyll": true
 		}
 	}
