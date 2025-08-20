@@ -114,6 +114,11 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
+        {
+          href: 'vscode://file/D:/nowtech-docs/nowtech-docs.code-workspace',
+          label: 'VSCode',
+          position: 'right',
+        },
       ],
     },
     footer: {
