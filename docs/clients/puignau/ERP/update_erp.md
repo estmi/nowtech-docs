@@ -38,13 +38,13 @@ Expulsar els usuaris primer.
 
 Update Stuff...
 
-## Reacticar tot
+## Reactivar tot
 
-## Enable logins on SQL Server
+### Enable logins on SQL Server
 
 <SqlViewer file="puignau\ERP\update_erp\enable_users.sql"/>
 
-## Reactivar serveis
+### Reactivar serveis
 
 Serveis parats:
 
