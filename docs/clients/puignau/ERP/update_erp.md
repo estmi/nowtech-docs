@@ -14,6 +14,8 @@ Expulsar els usuaris primer.
 
 ### Parar servei de IIS
 
+### Para SQL Server Agent
+
 ### Parar Gateway PowerBI
 
 ### Parar Docuware Local Data Connector
@@ -36,7 +38,15 @@ Expulsar els usuaris primer.
 
 ## UPDATE
 
+### Restart SQL Server
+
+Reiniciem servei de SQL Server per tenir el servei net.
+
 Update Stuff...
+
+### Restart SQL Server last
+
+Reiniciem servei de SQL Server per tenir el servei net despres d'actualitzar.
 
 ## Reactivar tot
 
