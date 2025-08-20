@@ -16,7 +16,9 @@ Expulsar els usuaris primer.
 
 ### Parar Gateway PowerBI
 
-### Para Docuware Data Access
+### Parar Docuware Local Data Connector
+
+### Parar Task Scheduler
 
 ## Disable SQL Server Access
 
@@ -42,4 +44,11 @@ Update Stuff...
 
 <SqlViewer file="puignau\ERP\update_erp\enable_users.sql"/>
 
-## 
+## Reactivar serveis
+
+Serveis parats:
+
+- IIS
+- Docuware Local Data Connector
+- PowerBI Gateway
+- Task Scheduler
