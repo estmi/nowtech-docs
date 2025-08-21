@@ -34,14 +34,7 @@ Aquests dos camps ens permetran saber si hi ha una comanda a eliminar i si prove
 
 ## Informe
 
-```sql
-SELECT pugiaa.CasellaCompra, pugica.Nom, pugiaa.Article, pugiaa.Nom, pugi.UnitatsAssignades, pugiaa.TipusUnitat,pugiaa.PreuCost, pugiaa.PreuCostTotal
-FROM puignau..ArticleArrivaReserves pugi
-INNER JOIN puignaubcn..ArticleArriva pubaaa on pubaaa.IdLlotjaGirona = pugi.IdLlotja
-INNER JOIN puignau..ArticleArriva pugiaa on pugiaa.Id = pugi.IdLlotja
-LEFT JOIN puignau..CasellesCompres pugica on pugica.Casella = pugiaa.CasellaCompra
-WHERE Client = 6507
-```
+<SqlViewer file="puignau-bcn/4208/fpers_reserves_producte_pa_pugi_per_puba.sql" title="Informe PA de PUGI -=> PUBA"/>
 
 [param_definition_IdEmpresaLlotja]: /nowtech-docs/clients/puignau-bcn/4208/param_definition_IdEmpresaLlotja.png
 
