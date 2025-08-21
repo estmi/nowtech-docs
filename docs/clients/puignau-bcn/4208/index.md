@@ -30,6 +30,19 @@ Afegir parametre `IdEmpresaLlotja`. Ocultar i posar default `{{IdEmpresaLlotja}}
 
 Aquests dos camps ens permetran saber si hi ha una comanda a eliminar i si prove d'una llotja relacionada.
 
-![alt text](image.png)
+![fields_to_add]
+
+## Informe
+
+```sql
+SELECT pugiaa.CasellaCompra, pugica.Nom, pugiaa.Article, pugiaa.Nom, pugi.UnitatsAssignades, pugiaa.TipusUnitat,pugiaa.PreuCost, pugiaa.PreuCostTotal
+FROM puignau..ArticleArrivaReserves pugi
+INNER JOIN puignaubcn..ArticleArriva pubaaa on pubaaa.IdLlotjaGirona = pugi.IdLlotja
+INNER JOIN puignau..ArticleArriva pugiaa on pugiaa.Id = pugi.IdLlotja
+LEFT JOIN puignau..CasellesCompres pugica on pugica.Casella = pugiaa.CasellaCompra
+WHERE Client = 6507
+```
 
 [param_definition_IdEmpresaLlotja]: /nowtech-docs/clients/puignau-bcn/4208/param_definition_IdEmpresaLlotja.png
+
+[fields_to_add]: /nowtech-docs/clients/puignau-bcn/4208/fields_to_add.png

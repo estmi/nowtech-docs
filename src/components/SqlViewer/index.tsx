@@ -23,7 +23,7 @@ const SqlViewer: React.FC<SqlViewerProps> = ({ file, title,baseUrl }) => {
     fetch(`/nowtech-docs/${baseUrl}${file}`)
       .then((res) => {
         if (!res.ok) 
-          throw new Error(`No se pudo cargar el archivo: ${file}`);
+          throw new Error(`No se pudo cargar el archivo: /nowtech-docs/${baseUrl}${file}`);
         return res.text();
       })
       .then(setSql)
