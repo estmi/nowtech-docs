@@ -42,3 +42,7 @@
 .vscodeButton:hover {
   background-color: var(--ifm-color-emphasis-200);
 }
+
+.pre{
+  margin: 0px
+}
