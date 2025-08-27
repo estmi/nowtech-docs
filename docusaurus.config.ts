@@ -15,8 +15,8 @@ const config: Config = {
   url: 'https://estmi.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-   baseUrl: '/nowtech-docs/',
-  //baseUrl: '/',
+  // baseUrl: '/nowtech-docs/',
+  baseUrl: '/',
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'estmi', // Usually your GitHub org/user name.
