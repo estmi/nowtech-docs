@@ -1,4 +1,4 @@
-CREATE FUNCTION fpers_reserves_producte_pa_pugi_per_puba(@Data date)
+CREATE FUNCTION fPers_reserves_producte_pa_pugi_per_puba(@Data date)
 RETURNS TABLE 
 AS
 RETURN 
