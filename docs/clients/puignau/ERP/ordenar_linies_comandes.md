@@ -22,4 +22,4 @@ Nomes s'ordenaran les comandes que vinguin de programes aliens a Ahora, per exem
 En cas de voler ordenar manualment, es pot entrar a la comanda desde Ahora i mirar la columna `Orden`, despres podem fer clic dret a la linia i especificar `Cambiar Orden` on tot seguit ens demanara a quina fila ubicar la fila seleccionada.
 
 ![ordenar_linies_comandes_right_click]
-[ordenar_linies_comandes_right_click]: /nowtech-docs/clients/puignau/ERP_functions/ordenar_linies_comandes_right_click.png
+[ordenar_linies_comandes_right_click]: /clients/puignau/ERP_functions/ordenar_linies_comandes_right_click.png

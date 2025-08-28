@@ -20,10 +20,10 @@ const SqlViewer: React.FC<SqlViewerProps> = ({ file, title,baseUrl }) => {
 
   const loadSql = () => {
     setError(null);
-    fetch(`/nowtech-docs/${baseUrl}${file}`)
+    fetch(`/${baseUrl}${file}`)
       .then((res) => {
         if (!res.ok) 
-          throw new Error(`No se pudo cargar el archivo: /nowtech-docs/${baseUrl}${file}`);
+          throw new Error(`No se pudo cargar el archivo: /${baseUrl}${file}`);
         return res.text();
       })
       .then(setSql)
@@ -68,7 +68,7 @@ const SqlViewer: React.FC<SqlViewerProps> = ({ file, title,baseUrl }) => {
   className={styles.vscodeButton}
   title="Abrir en Visual Studio Code"
 >
-<img src = "/nowtech-docs/img/vscode.svg" height={20} width={20}/>
+<img src = "/img/vscode.svg" height={20} width={20}/>
 </a>
 
         </div>

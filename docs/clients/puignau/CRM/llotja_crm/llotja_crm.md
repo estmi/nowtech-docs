@@ -14,4 +14,4 @@
 
 <SqlViewer file="puignau\CRM\llotja_crm\vPers_Gestio_Articles_Reserva_PrePedidoAvui_Empresa.sql"/>
 
-[top_buttons_image]: /nowtech-docs/clients/puignau/CRM/llotja_crm/top_buttons_image.png
+[top_buttons_image]: /clients/puignau/CRM/llotja_crm/top_buttons_image.png

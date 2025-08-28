@@ -14,6 +14,6 @@ A la part inferior, podem ordenar les columnes de la manera que ens sigui més c
 
 Un cop guardem es refrescarà la vista i aplicarà els canvis de les columnes que hem aplicat.
 
-[accedir_configurador_columnes]: /nowtech-docs/ahora/manuals/add_column_to_collection/accedir_configurador_columnes.png
-[configurador_columnes_checkboxes]: /nowtech-docs/ahora/manuals/add_column_to_collection/configurador_columnes_checkboxes.png
-[configurador_columnes_ordenacio]: /nowtech-docs/ahora/manuals/add_column_to_collection/configurador_columnes_ordenacio.png
+[accedir_configurador_columnes]: /ahora/manuals/add_column_to_collection/accedir_configurador_columnes.png
+[configurador_columnes_checkboxes]: /ahora/manuals/add_column_to_collection/configurador_columnes_checkboxes.png
+[configurador_columnes_ordenacio]: /ahora/manuals/add_column_to_collection/configurador_columnes_ordenacio.png

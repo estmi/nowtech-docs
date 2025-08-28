@@ -20,7 +20,7 @@ Quan generem els albarans, s'executa el seguent metode:
 
 <SqlViewer file="puignau/ERP_functions/generar_albarans/pPers_Generar_Albaranes_Ruta.sql"/>
 
-[opcio_menu_generar_albarans]: /nowtech-docs/clients/puignau/ERP_functions/generar_albarans/opcio_menu_generar_albarans.png
-[pantalla_generar_albarans]: /nowtech-docs/clients/puignau/ERP_functions/generar_albarans/pantalla_generar_albarans.png
-[pantalla_generar_albarans_butonera]: /nowtech-docs/clients/puignau/ERP_functions/generar_albarans/pantalla_generar_albarans_butonera.png
-[pantalla_generar_albarans_filtre]: /nowtech-docs/clients/puignau/ERP_functions/generar_albarans/pantalla_generar_albarans_filtre.png
+[opcio_menu_generar_albarans]: /clients/puignau/ERP_functions/generar_albarans/opcio_menu_generar_albarans.png
+[pantalla_generar_albarans]: /clients/puignau/ERP_functions/generar_albarans/pantalla_generar_albarans.png
+[pantalla_generar_albarans_butonera]: /clients/puignau/ERP_functions/generar_albarans/pantalla_generar_albarans_butonera.png
+[pantalla_generar_albarans_filtre]: /clients/puignau/ERP_functions/generar_albarans/pantalla_generar_albarans_filtre.png

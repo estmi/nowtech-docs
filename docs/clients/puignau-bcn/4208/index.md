@@ -36,6 +36,6 @@ Aquests dos camps ens permetran saber si hi ha una comanda a eliminar i si prove
 
 <SqlViewer file="puignau-bcn/4208/fpers_reserves_producte_pa_pugi_per_puba.sql" title="Informe PA de PUGI -=> PUBA"/>
 
-[param_definition_IdEmpresaLlotja]: /nowtech-docs/clients/puignau-bcn/4208/param_definition_IdEmpresaLlotja.png
+[param_definition_IdEmpresaLlotja]: /clients/puignau-bcn/4208/param_definition_IdEmpresaLlotja.png
 
-[fields_to_add]: /nowtech-docs/clients/puignau-bcn/4208/fields_to_add.png
+[fields_to_add]: /clients/puignau-bcn/4208/fields_to_add.png

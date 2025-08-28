@@ -24,7 +24,7 @@ En cas de voler tornar a veure per defecte un article, des de la seva fitxa pode
 
 ![unhide_item_from_history]
 
-[button_hidden_items]: /nowtech-docs/clients/puignau/CRM/amagar_articles/button_hidden_items.png
-[hidden_item_shown_with_salmon_background]: /nowtech-docs/clients/puignau/CRM/amagar_articles/hidden_item_shown_with_salmon_background.png
-[hide_item_from_history]: /nowtech-docs/clients/puignau/CRM/amagar_articles/hide_item_from_history.png
-[unhide_item_from_history]: /nowtech-docs/clients/puignau/CRM/amagar_articles/unhide_item_from_history.png
+[button_hidden_items]: /clients/puignau/CRM/amagar_articles/button_hidden_items.png
+[hidden_item_shown_with_salmon_background]: /clients/puignau/CRM/amagar_articles/hidden_item_shown_with_salmon_background.png
+[hide_item_from_history]: /clients/puignau/CRM/amagar_articles/hide_item_from_history.png
+[unhide_item_from_history]: /clients/puignau/CRM/amagar_articles/unhide_item_from_history.png
