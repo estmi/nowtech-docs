@@ -170,7 +170,7 @@
   // MD033/no-inline-html : Inline HTML : https://github.com/DavidAnson/markdownlint/blob/v0.38.0/doc/md033.md
   "MD033": {
     // Allowed elements
-    "allowed_elements": ["SqlViewer", "Columns", "Column"]
+    "allowed_elements": ["SqlViewer", "Columns", "Column", "ImageOnClick"]
   },
 
   // MD034/no-bare-urls : Bare URL used : https://github.com/DavidAnson/markdownlint/blob/v0.38.0/doc/md034.md
