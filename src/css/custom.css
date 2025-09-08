@@ -46,5 +46,7 @@
 	.sidebar_njMd{
 		display: none;
 	}
-
+  .theme-doc-footer .theme-doc-footer-edit-meta-row{
+    display: none;
+  }
 }
