@@ -50,3 +50,7 @@
     display: none;
   }
 }
+
+ul ul ol, ul ol ol, ol ul ol, ol ol ol {
+    list-style-type: decimal;
+}
