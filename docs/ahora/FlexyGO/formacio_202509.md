@@ -4,7 +4,7 @@
 
 - 09:00 - 10:30 -> Explicacio de com funciona FlexyGO
 - 10:30 - 11:30 -> Cafe
-- 11:30 - YY:yy ->
+- 11:30 - 16:00 ->
   - Explicacio de FlexyGO CRM i la seva App Offline
   - Instalacio de AcademyCTrack i  FlexyGO
     - En instalar el FlexyGO s'instala el servei FlexyGOService. Aquest servei s'utilitza per instalar els Flexys i actualitzar-los.
@@ -21,11 +21,15 @@
       </flx-map>
       <!-- END FOOTER -->
       ```
-    - Hola
+  - Practica 1:
+    1. Creem l'objecte `Employee`
 
 ## Dimarts 09/09/2025
 
 - 09:00 - XX:xx ->
+  - Practica 1:
+    1. Creem l'objecte `Employee`
+    2. Creem l'objecte `Account`
 
 ## Dimecres 10/09/2025
 
