@@ -9,12 +9,7 @@ cd C:\Windows\Microsoft.NET\Framework\v4.0.30319
 
 ## Switch statement in html
 
-```html
-<span class="{{type_id|switch:[0:txt-warning,1:txt-outstanding,2:txt-tools,else:txt-primary]}}" >
-    <i class="flx-icon {{type_id|switch:[0:icon-focus-6,1:icon-user4,2:icon-providers,else:icon-clients1]}} icon-margin-right"></i>
-    {{descrip}}
-</span>
-```
+<SqlViewer baseUrl="/" file="utils/flexygo/switch_statement.html" title="Switch Statement"/>
 
 ## Access ContextVars
 
@@ -25,15 +20,7 @@ cd C:\Windows\Microsoft.NET\Framework\v4.0.30319
 
 ## Preguntar a l'usuari abans de fer una accio
 
-```JavaScript
-flexygo.msg.confirm('¿Estás seguro?').then((result) => {
-    if (result) {
-        flexygo.msg.alert('Confirmado');
-    } else {
-        flexygo.msg.alert('Cancelado');
-    }
-});
-```
+<SqlViewer baseUrl="/" file="utils/flexygo/ask_user_yes_no.js" title="Ask user yes or no"/>
 
 ## Enable development mode
 
