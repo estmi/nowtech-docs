@@ -1,12 +1,5 @@
 # FlexyGO
 
-## Access ContextVars
-
-```js
-> flexygo.context.currentReference
-<- '0'
-```
-
 ## FlexyGO Properties settings
 
 ### Persist Default Value
@@ -20,15 +13,6 @@ Si utilitzem `Custom Controls`, despres podem acabar de personalitzar algunes co
 ## Delete filter
 
 Per eliminar un filtre has d'anar a la coleccio, vista llista, i fer embut i `Settings`. Alla, veurem el mateix menu que en el wizard de l'objecte, pero amb un buto que diu `Delete`.
-
-## Switch statement in html
-
-```html
-<span class="{{type_id|switch:[0:txt-warning,1:txt-outstanding,2:txt-tools,else:txt-primary]}}" >
-    <i class="flx-icon {{type_id|switch:[0:icon-focus-6,1:icon-user4,2:icon-providers,else:icon-clients1]}} icon-margin-right"></i>
-    {{descrip}}
-</span>
-```
 
 ## Relacions entre objectes
 

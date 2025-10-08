@@ -23,7 +23,14 @@ const config: Config = {
   projectName: 'nowtech-docs', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      // This will be called for each link in markdown files
+      // You can return a modified version of the link
+      // or return null to let Docusaurus handle it (default behavior)
+      onBrokenMarkdownLinks: 'warn',
+    }
+  },
   plugins: [
     path.resolve(__dirname, './plugins/auto-image-references.js'),
   ],
@@ -107,6 +114,12 @@ const config: Config = {
           sidebarId: 'ahoraSidebar',
           position: 'left',
           label: 'Ahora',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'utilsSidebar',
+          position: 'left',
+          label: 'Utils',
         },
         //{to: '/blog', label: 'Blog', position: 'left'},
         {

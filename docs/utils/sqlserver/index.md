@@ -1,10 +1,8 @@
-# Documentacio flexy
+# SQL Server Utils
 
-## Enable development mode
+## Search for text in SQL Server
 
-```js
-flexygo.debug.enableDevelopMode(1,0)
-```
+<SqlViewer file="utils/search_for_text_in_query.sql"/>
 
 ## Enable xmdshell per poder crear arxius desde sqlserver
 
