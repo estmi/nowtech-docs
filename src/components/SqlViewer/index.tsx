@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { atomDark, atomLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import styles from './SqlViewer.module.css';
+import { useColorMode } from '@docusaurus/theme-common';
 
 interface SqlViewerProps {
   file: string;
@@ -50,7 +51,8 @@ const SqlViewer: React.FC<SqlViewerProps> = ({ file, title,baseUrl }) => {
   const lines = sql.split('\n');
   const preview = lines.slice(0, 10).join('\n')+'\n    << Mostrar mes linies >>';
   const isTruncated = lines.length > 10;
-
+  const { colorMode } = useColorMode();
+  const syntaxStyle = colorMode === 'dark' ? atomDark : atomLight;
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -73,7 +75,7 @@ const SqlViewer: React.FC<SqlViewerProps> = ({ file, title,baseUrl }) => {
 
         </div>
       </div>
-      <SyntaxHighlighter language="sql" style={atomDark} showLineNumbers>
+      <SyntaxHighlighter language="sql" style={syntaxStyle} showLineNumbers>
         {expanded || !isTruncated ? sql : preview}
       </SyntaxHighlighter>
     </div>
