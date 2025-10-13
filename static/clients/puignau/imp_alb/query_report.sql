@@ -1,0 +1,78 @@
+SELECT  Albaranes_Cli_Cab.IdAlbaran
+       ,Articulos.IdArticulo
+       ,IVAs.Porcentaje
+       ,Albaranes_Cli_Cab.IdDoc
+       ,Clientes_Datos.IdCliente
+       ,Clientes_Datos.Cliente
+       ,Clientes_Datos.RazonSocial
+       ,Clientes_Datos.Direccion
+       ,Clientes_Datos.Ciudad
+       ,Albaranes_Cli_Cab.NumAlbaran
+       ,Clientes_Datos.NumTelefono
+       ,Zonas.Descrip
+       ,Representantes.Nombre
+       ,Representantes.Apellidos
+       ,Pers_albaranes_lineas_min.fila
+       ,Pers_albaranes_lineas_min.Ord
+       ,Pers_albaranes_lineas_min.idalbaran
+       ,Pers_albaranes_lineas_min.reset_count
+       ,Rutas.Descrip
+       ,Rutas.IdRuta
+       ,Conf_Clientes.Pers_OrdreRuta
+       ,Albaranes_Cli_Cab.FechaAlb
+       ,Pedidos_Cli_Lineas.IdDoc
+       ,Clientes_Datos.Provincia
+       ,Clientes_Datos.CodPostal
+       ,Pers_albaranes_lineas_min.Cantidad
+       ,Pers_albaranes_lineas_min.precio
+       ,Pers_albaranes_lineas_min.TipoUnidad
+       ,Pers_albaranes_lineas_min.total
+       ,Pedidos_Cli_Lineas.Total_Euros
+       ,Pedidos_Cli_Lineas.Precio_EURO
+       ,Articulos.TipoCantidad
+       ,Series_Facturacion.CodSerie
+       ,ClientesFact_Tipos.Descrip
+       ,Series_Facturacion.Codigo_Serie
+       ,vPers_CR_Albaranes_Facturas.NumFacturas
+       ,vPers_CR_Albaranes_Facturas.FormaPago
+       ,vPers_CR_Albaranes_Facturas.Vtos
+       ,Albaranes_Cli_Cab.Observaciones
+       ,Clientes_Datos_Comerciales.TextoAlbaran
+       ,Representantes.IdEmpleado
+       ,vPers_CR_Albaranes_Facturas.FechasFact
+       ,Pers_albaranes_lineas_min.Lote
+       ,Clientes_Datos.Nif
+       ,Pedidos_Cli_Lineas.IdArticulo
+FROM
+Albaranes_Cli_Cab Albaranes_Cli_Cab
+	LEFT OUTER JOIN Clientes_Datos Clientes_Datos
+	ON Albaranes_Cli_Cab.IdCliente = Clientes_Datos.IdCliente
+	LEFT OUTER JOIN Series_Facturacion Series_Facturacion
+	ON Albaranes_Cli_Cab.SerieAlbaran = Series_Facturacion.SerieFactura
+	LEFT OUTER JOIN Pers_albaranes_lineas_min4 Pers_albaranes_lineas_min
+	ON Albaranes_Cli_Cab.IdAlbaran = Pers_albaranes_lineas_min.idalbaran
+	LEFT OUTER JOIN Pedidos_Cli_Lineas Pedidos_Cli_Lineas
+	ON (Albaranes_Cli_Cab.IdAlbaran = Pedidos_Cli_Lineas.IdAlbaran) AND (Pers_albaranes_lineas_min.iddoc = Pedidos_Cli_Lineas.IdDoc)
+	LEFT OUTER JOIN vPers_CR_Albaranes_Facturas vPers_CR_Albaranes_Facturas
+	ON Albaranes_Cli_Cab.IdAlbaran = vPers_CR_Albaranes_Facturas.IdAlbaran
+	LEFT OUTER JOIN Clientes_Datos_Comerciales Clientes_Datos_Comerciales
+	ON Clientes_Datos.IdCliente = Clientes_Datos_Comerciales.IdCliente
+	LEFT OUTER JOIN Conf_Clientes Conf_Clientes
+	ON Clientes_Datos.IdCliente = Conf_Clientes.IdCliente
+	LEFT OUTER JOIN Clientes_Datos_Economicos Clientes_Datos_Economicos
+	ON Clientes_Datos.IdCliente = Clientes_Datos_Economicos.IdCliente
+	LEFT OUTER JOIN Zonas Zonas
+	ON Clientes_Datos_Comerciales.Zona = Zonas.Zona
+	LEFT OUTER JOIN Rutas Rutas
+	ON Clientes_Datos_Comerciales.IdRuta = Rutas.IdRuta
+	LEFT OUTER JOIN ClientesFact_Tipos ClientesFact_Tipos
+	ON Clientes_Datos_Economicos.TipoFacturacion = ClientesFact_Tipos.IdTipo
+	LEFT OUTER JOIN Articulos Articulos
+	ON Pedidos_Cli_Lineas.IdArticulo = Articulos.IdArticulo
+	LEFT OUTER JOIN IVAs IVAs
+	ON Pedidos_Cli_Lineas.IdIva = IVAs.IdIVA
+	LEFT OUTER JOIN Pedidos_Cli_Cabecera Pedidos_Cli_Cabecera
+	ON Pedidos_Cli_Lineas.IdPedido = Pedidos_Cli_Cabecera.IdPedido
+LEFT OUTER JOIN Empleados_Datos Representantes
+ON Pedidos_Cli_Cabecera.Representante = Representantes.IdEmpleado
+ORDER BY Conf_Clientes.Pers_OrdreRuta, Pers_albaranes_lineas_min.Ord, Pers_albaranes_lineas_min.idalbaran, Pers_albaranes_lineas_min.reset_count, Pers_albaranes_lineas_min.fila
